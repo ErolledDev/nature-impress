@@ -28,7 +28,7 @@ export default function Post({ posts }) {
           {/* Hero Section */}
           <div className="text-center mb-12 sm:mb-16">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-brand-primary dark:text-brand-accent mb-4 sm:mb-6 leading-tight">
-              Nature's Whispers
+              Nature&apos;s Whispers
             </h1>
             <p className="text-lg sm:text-xl lg:text-2xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto leading-relaxed">
               Discover the beauty and wonder of the natural world through captivating stories, stunning photography, and deep insights into wildlife and ecology.

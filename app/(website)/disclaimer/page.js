@@ -24,7 +24,7 @@ export default function DisclaimerPage() {
             </h2>
             <p className="text-gray-600 dark:text-gray-400">
               The information on this website is provided on an "as-is" basis. To the fullest extent 
-              permitted by law, Nature's Whispers excludes all representations, warranties, obligations, 
+              permitted by law, Nature&apos;s Whispers excludes all representations, warranties, obligations, 
               and liabilities arising out of or in connection with the information provided on this website.
             </p>
           </section>
@@ -96,7 +96,7 @@ export default function DisclaimerPage() {
               Limitation of Liability
             </h2>
             <p className="text-gray-600 dark:text-gray-400">
-              Nature's Whispers will not be liable for any direct, indirect, incidental, consequential, 
+              Nature&apos;s Whispers will not be liable for any direct, indirect, incidental, consequential, 
               or punitive damages arising out of your access to or use of the website, or any content 
               provided herein. This includes, but is not limited to, personal injury, property damage, 
               or any other damages resulting from outdoor activities or wildlife encounters.
