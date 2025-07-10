@@ -55,10 +55,10 @@ export default function Contact({ settings }) {
       <div className="grid my-10 md:grid-cols-2">
         <div className="my-10">
           <h2 className="text-2xl font-semibold dark:text-white">
-            Contact Nature's Whispers
+            Contact Nature&apos;s Whispers
           </h2>
           <p className="max-w-sm mt-5">
-            Want to share your nature experiences or ask about wildlife? 
+            Want to share your nature experiences or ask about wildlife?
             We are here to connect. Fill up the form or send us an email.
           </p>
 

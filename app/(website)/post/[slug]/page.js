@@ -11,14 +11,14 @@ export async function generateMetadata({ params }) {
   
   if (!post) {
     return {
-      title: 'Post Not Found | Nature\'s Whispers',
+      title: 'Post Not Found | Nature&apos;s Whispers',
       description: 'The requested post could not be found.'
     };
   }
 
   return {
     title: post.title,
-    description: post.excerpt || `Discover ${post.title} - A captivating nature story from Nature's Whispers exploring the beauty and wonder of the natural world.`,
+    description: post.excerpt || `Discover ${post.title} - A captivating nature story from Nature&apos;s Whispers exploring the beauty and wonder of the natural world.`,
     keywords: [
       ...(post.categories?.map(cat => cat.title) || []),
       'nature', 'wildlife', 'environment', 'conservation'
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }) {
     authors: [{ name: post.author?.name || 'Nature Explorer' }],
     openGraph: {
       title: post.title,
-      description: post.excerpt || `Discover ${post.title} - A captivating nature story from Nature's Whispers.`,
+      description: post.excerpt || `Discover ${post.title} - A captivating nature story from Nature&apos;s Whispers.`,
       type: 'article',
       publishedTime: post.publishedAt || post._createdAt,
       authors: [post.author?.name || 'Nature Explorer'],
@@ -46,7 +46,7 @@ export async function generateMetadata({ params }) {
       images: post.mainImage?.src ? [post.mainImage.src] : [],
     },
     alternates: {
-      canonical: `/post/${params.slug}`,
+      canonical: (process.env.SITE_URL || "https://mydomain.com") + `/post/${params.slug}/`,
     },
   };
 }

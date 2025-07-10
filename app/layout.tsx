@@ -15,8 +15,8 @@ const lora = Lora({
 
 export const metadata = {
   title: {
-    default: "Nature's Whispers - Exploring the Wild",
-    template: "%s | Nature's Whispers"
+    default: "Nature&apos;s Whispers - Exploring the Wild",
+    template: "%s | Nature&apos;s Whispers"
   },
   description: "Discover the beauty and wonder of the natural world through captivating stories, stunning photography, and deep insights into wildlife and ecology. Join us on a journey through pristine wilderness, fascinating animal behaviors, and conservation efforts.",
   keywords: [
@@ -26,7 +26,7 @@ export const metadata = {
   ],
   authors: [{ name: "Nature Explorer" }],
   creator: "Nature's Whispers",
-  publisher: "Nature's Whispers",
+  publisher: "Nature&apos;s Whispers",
   formatDetection: {
     email: false,
     address: false,
@@ -35,9 +35,9 @@ export const metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://mydomain.com",
-    siteName: "Nature's Whispers",
-    title: "Nature's Whispers - Exploring the Wild",
+    url: process.env.SITE_URL || "https://mydomain.com",
+    siteName: "Nature&apos;s Whispers",
+    title: "Nature&apos;s Whispers - Exploring the Wild",
     description: "Discover the beauty and wonder of the natural world through captivating stories, stunning photography, and deep insights into wildlife and ecology. Join us on a journey through pristine wilderness.",
     images: [
       {
@@ -51,8 +51,8 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     site: "@natureswhispers",
-    creator: "@natureswhispers",
-    title: "Nature's Whispers - Exploring the Wild",
+    creator: "@natureswhispers", 
+    title: "Nature&apos;s Whispers - Exploring the Wild",
     description: "Discover the beauty and wonder of the natural world through captivating stories, stunning photography, and deep insights into wildlife and ecology.",
     images: ["https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop"]
   },
@@ -73,18 +73,13 @@ export const metadata = {
     yahoo: "your-yahoo-verification-code",
   },
   alternates: {
-    canonical: "https://mydomain.com",
+    canonical: process.env.SITE_URL || "https://mydomain.com",
     languages: {
-      'en-US': 'https://mydomain.com',
+      'en-US': process.env.SITE_URL || 'https://mydomain.com',
     },
     types: {
       'application/rss+xml': [
-        { url: 'https://mydomain.com/rss.xml', title: "Nature's Whispers RSS Feed" },
-      ],
-    },
-    types: {
-      'application/rss+xml': [
-        { url: 'https://mydomain.com/rss.xml', title: "Nature's Whispers RSS Feed" },
+        { url: (process.env.SITE_URL || 'https://mydomain.com') + '/api/rss/', title: "Nature&apos;s Whispers RSS Feed" },
       ],
     },
   }
@@ -95,10 +90,15 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const metadataBase = new URL(process.env.SITE_URL || "https://mydomain.com");
+  
   return (
     <html
       lang="en"
       className={cx(inter.variable, lora.variable)}>
+      <head>
+        <link rel="canonical" href={metadataBase.toString()} />
+      </head>
       <body className="antialiased text-gray-800 dark:bg-black dark:text-gray-400">
         <Providers>{children}</Providers>
       </body>
