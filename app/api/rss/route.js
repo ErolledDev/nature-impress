@@ -3,10 +3,10 @@ import { getAllPosts } from '@/lib/staticData/fetcher';
 export async function GET() {
   try {
     const posts = await getAllPosts();
-    const siteUrl = 'https://mydomain.com';
+    const siteUrl = process.env.SITE_URL || 'https://mydomain.com';
     
     const rssItems = posts.slice(0, 20).map(post => {
-      const postUrl = `${siteUrl}/post/${post.slug.current}`;
+      const postUrl = `${siteUrl}/post/${post.slug.current}/`;
       const pubDate = new Date(post.publishedAt || post._createdAt).toUTCString();
       
       return `
@@ -32,7 +32,7 @@ export async function GET() {
     <managingEditor>hello@mydomain.com (Nature Explorer)</managingEditor>
     <webMaster>hello@mydomain.com (Nature Explorer)</webMaster>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
-    <atom:link href="${siteUrl}/rss.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="${siteUrl}/api/rss/" rel="self" type="application/rss+xml" />
     <image>
       <url>https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg?auto=compress&cs=tinysrgb&w=144&h=144&fit=crop</url>
       <title><![CDATA[Nature's Whispers]]></title>

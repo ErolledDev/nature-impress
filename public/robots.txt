@@ -11,4 +11,3 @@ Host: https://mydomain.com
 
 # Sitemaps
 Sitemap: https://mydomain.com/sitemap.xml
-Sitemap: https://mydomain.com/rss.xml
