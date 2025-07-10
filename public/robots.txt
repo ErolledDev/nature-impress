@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Disallow: /studio
+Disallow: /api
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Host
+Host: https://mydomain.com
+
+# Sitemaps
+Sitemap: https://mydomain.com/sitemap.xml
+Sitemap: https://mydomain.com/rss.xml
