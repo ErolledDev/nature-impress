@@ -1,7 +1,7 @@
 import Container from "@/components/container";
 
 export const metadata = {
-  title: "Terms of Service | Nature's Whispers",
+  title: "Terms of Service | Nature&apos;s Whispers",
   description: "Read the terms and conditions for using Nature's Whispers website and services.",
 };
 
@@ -23,7 +23,7 @@ export default function TermsOfServicePage() {
               Acceptance of Terms
             </h2>
             <p className="text-gray-600 dark:text-gray-400">
-              By accessing and using Nature's Whispers website, you accept and agree to be bound by 
+              By accessing and using Nature&apos;s Whispers website, you accept and agree to be bound by 
               the terms and provision of this agreement. If you do not agree to abide by the above, 
               please do not use this service.
             </p>
@@ -66,7 +66,7 @@ export default function TermsOfServicePage() {
               Disclaimer
             </h2>
             <p className="text-gray-600 dark:text-gray-400">
-              The materials on Nature's Whispers website are provided on an 'as is' basis. Nature's 
+              The materials on Nature&apos;s Whispers website are provided on an &apos;as is&apos; basis. Nature&apos;s 
               Whispers makes no warranties, expressed or implied, and hereby disclaims and negates 
               all other warranties including without limitation, implied warranties or conditions of 
               merchantability, fitness for a particular purpose, or non-infringement of intellectual property.
@@ -78,10 +78,10 @@ export default function TermsOfServicePage() {
               Limitations
             </h2>
             <p className="text-gray-600 dark:text-gray-400">
-              In no event shall Nature's Whispers or its suppliers be liable for any damages 
+              In no event shall Nature&apos;s Whispers or its suppliers be liable for any damages 
               (including, without limitation, damages for loss of data or profit, or due to business 
-              interruption) arising out of the use or inability to use the materials on Nature's 
-              Whispers website, even if Nature's Whispers or its authorized representative has been 
+              interruption) arising out of the use or inability to use the materials on Nature&apos;s 
+              Whispers website, even if Nature&apos;s Whispers or its authorized representative has been 
               notified orally or in writing of the possibility of such damage.
             </p>
           </section>
@@ -91,8 +91,8 @@ export default function TermsOfServicePage() {
               Revisions and Errata
             </h2>
             <p className="text-gray-600 dark:text-gray-400">
-              The materials appearing on Nature's Whispers website could include technical, 
-              typographical, or photographic errors. Nature's Whispers does not warrant that any 
+              The materials appearing on Nature&apos;s Whispers website could include technical, 
+              typographical, or photographic errors. Nature&apos;s Whispers does not warrant that any 
               of the materials on its website are accurate, complete, or current.
             </p>
           </section>

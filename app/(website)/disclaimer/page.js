@@ -1,7 +1,7 @@
 import Container from "@/components/container";
 
 export const metadata = {
-  title: "Disclaimer | Nature's Whispers",
+  title: "Disclaimer | Nature&apos;s Whispers",
   description: "Important disclaimers and limitations regarding the content and services provided by Nature's Whispers.",
 };
 
@@ -34,7 +34,7 @@ export default function DisclaimerPage() {
               Educational Content
             </h2>
             <p className="text-gray-600 dark:text-gray-400">
-              The content on Nature's Whispers is intended for educational and informational purposes 
+              The content on Nature&apos;s Whispers is intended for educational and informational purposes 
               only. While we strive to provide accurate and up-to-date information about nature, 
               wildlife, and environmental topics, we make no guarantees about the completeness, 
               reliability, or accuracy of this information.

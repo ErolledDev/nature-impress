@@ -65,12 +65,12 @@ export default function Navbar(props) {
                 <div className="flex w-full items-center justify-between md:w-auto">
                   <Link href="/" className="flex-shrink-0 dark:hidden">
                     <span className="block text-center text-xl sm:text-2xl font-bold text-brand-primary hover:text-brand-secondary transition-colors duration-200">
-                      Nature's Whispers
+                      Nature&apos;s Whispers
                     </span>
                   </Link>
                   <Link href="/" className="hidden flex-shrink-0 dark:block">
                     <span className="block text-center text-xl sm:text-2xl font-bold text-brand-accent hover:text-brand-secondary transition-colors duration-200">
-                      Nature's Whispers
+                      Nature&apos;s Whispers
                     </span>
                   </Link>
                   <Disclosure.Button
