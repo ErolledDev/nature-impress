@@ -90,7 +90,7 @@ function SearchResults({ posts, query }) {
             No stories found
           </h3>
           <p className="text-gray-600 dark:text-gray-400 mb-6">
-            We couldn't find any nature stories matching "{query}". Try different keywords or browse our categories.
+            We couldn&apos;t find any nature stories matching &quot;{query}&quot;. Try different keywords or browse our categories.
           </p>
           <div className="space-y-3">
             <a

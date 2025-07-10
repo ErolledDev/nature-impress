@@ -16,7 +16,7 @@ export async function GET() {
       <guid isPermaLink="true">${postUrl}</guid>
       <description><![CDATA[${post.excerpt || 'Discover the beauty and wonder of the natural world through this captivating nature story.'}]]></description>
       <pubDate>${pubDate}</pubDate>
-      <author>hello@mydomain.com (${post.author.name})</author>
+      <author><![CDATA[hello@mydomain.com (${post.author.name})]]></author>
       ${post.categories.map(cat => `<category><![CDATA[${cat.title}]]></category>`).join('')}
       ${post.mainImage?.src ? `<enclosure url="${post.mainImage.src}" type="image/jpeg" />` : ''}
     </item>`;
@@ -29,12 +29,12 @@ export async function GET() {
     <link>${siteUrl}</link>
     <description><![CDATA[Discover the beauty and wonder of the natural world through captivating stories, stunning photography, and deep insights into wildlife and ecology.]]></description>
     <language>en-US</language>
-    <managingEditor>hello@mydomain.com (Nature Explorer)</managingEditor>
-    <webMaster>hello@mydomain.com (Nature Explorer)</webMaster>
+    <managingEditor><![CDATA[hello@mydomain.com (Nature Explorer)]]></managingEditor>
+    <webMaster><![CDATA[hello@mydomain.com (Nature Explorer)]]></webMaster>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${siteUrl}/api/rss/" rel="self" type="application/rss+xml" />
     <image>
-      <url>https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg?auto=compress&cs=tinysrgb&w=144&h=144&fit=crop</url>
+      <url>https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=144&amp;h=144&amp;fit=crop</url>
       <title><![CDATA[Nature's Whispers]]></title>
       <link>${siteUrl}</link>
       <width>144</width>
