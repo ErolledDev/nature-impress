@@ -4,14 +4,6 @@ const nextConfig = {
   swcMinify: true,
   output: 'export',
   trailingSlash: true,
-  async rewrites() {
-    return [
-      {
-        source: '/api/data',
-        destination: 'https://ailodi.xyz/cms/data/example.json',
-      },
-    ];
-  },
   images: {
     formats: ["image/avif", "image/webp"],
     dangerouslyAllowSVG: true,
