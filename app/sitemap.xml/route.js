@@ -2,7 +2,8 @@ import { getAllPostsSlugs } from '@/lib/staticData/fetcher';
 
 export async function GET() {
   try {
-    const siteUrl = process.env.SITE_URL || 'https://mydomain.com';
+    // Remove trailing slash from siteUrl to prevent double slashes
+    const siteUrl = (process.env.SITE_URL || 'https://mydomain.com').replace(/\/$/, '');
     
     // Static pages
     const staticPages = [
