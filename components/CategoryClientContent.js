@@ -4,7 +4,7 @@ import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import PostList from "@/components/postlist";
 import Pagination from "@/components/blog/pagination";
-import { getPaginatedPosts, getCategoryBySlug, getAllCategories } from "@/lib/staticData/fetcher";
+import { getPaginatedPosts, getCategoryBySlug, getAllCategories, getPostsByCategory } from "@/lib/staticData/fetcher";
 
 function CategoryContent() {
   const searchParams = useSearchParams();
@@ -15,6 +15,7 @@ function CategoryContent() {
   const [pageIndex, setPageIndex] = useState(1);
   const [isFirstPage, setIsFirstPage] = useState(true);
   const [isLastPage, setIsLastPage] = useState(false);
+  const [totalPosts, setTotalPosts] = useState(0);
 
   const categorySlug = searchParams.get('category');
   const page = searchParams.get('page');
@@ -27,46 +28,66 @@ function CategoryContent() {
         const currentPageIndex = parseInt(page, 10) || 1;
         setPageIndex(currentPageIndex);
 
-        // Fetch category data if categorySlug exists
-        let categoryData = null;
-        if (categorySlug) {
-          categoryData = await getCategoryBySlug(categorySlug);
-          setCategory(categoryData);
-        } else {
-          setCategory(null);
-        }
-
         // Fetch all categories for the category list
         const allCategories = await getAllCategories();
         setCategories(allCategories);
 
-        // Fetch posts
-        const params = {
-          pageIndex: (currentPageIndex - 1) * POSTS_PER_PAGE,
-          limit: currentPageIndex * POSTS_PER_PAGE,
-          categorySlug: categorySlug
-        };
+        // Fetch category data and posts if categorySlug exists
+        let categoryData = null;
+        let postsData = [];
+        let allCategoryPosts = [];
+        
+        if (categorySlug) {
+          // Try to find category by slug first, then by title
+          categoryData = await getCategoryBySlug(categorySlug);
+          if (!categoryData) {
+            // If not found by slug, try to find by matching title
+            const foundCategory = allCategories.find(cat => 
+              cat.title.toLowerCase().replace(/\s+/g, '-') === categorySlug
+            );
+            if (foundCategory) {
+              categoryData = foundCategory;
+            }
+          }
+          setCategory(categoryData);
+          
+          // Get all posts for this category to calculate pagination
+          allCategoryPosts = await getPostsByCategory(categorySlug);
+          setTotalPosts(allCategoryPosts.length);
+          
+          // Get paginated posts for current page
+          const startIndex = (currentPageIndex - 1) * POSTS_PER_PAGE;
+          postsData = allCategoryPosts.slice(startIndex, startIndex + POSTS_PER_PAGE);
+        } else {
+          setCategory(null);
+          // If no category, get all posts with pagination
+          const params = {
+            pageIndex: (currentPageIndex - 1) * POSTS_PER_PAGE,
+            limit: currentPageIndex * POSTS_PER_PAGE,
+            categorySlug: null
+          };
+          postsData = await getPaginatedPosts(params);
+          setTotalPosts(postsData.length);
+        }
 
-        const postsData = await getPaginatedPosts(params);
         setPosts(postsData);
 
         // Determine pagination state
         setIsFirstPage(currentPageIndex < 2);
         
-        let lastPage = postsData.length < POSTS_PER_PAGE;
-        if (categorySlug) {
-          const allCategoryPosts = await getPaginatedPosts({ 
-            pageIndex: 0, 
-            limit: 1000,
-            categorySlug: categorySlug 
-          });
+        // Calculate if this is the last page
+        let lastPage;
+        if (categorySlug && allCategoryPosts.length > 0) {
           lastPage = currentPageIndex * POSTS_PER_PAGE >= allCategoryPosts.length;
+        } else {
+          lastPage = postsData.length < POSTS_PER_PAGE;
         }
         setIsLastPage(lastPage);
 
       } catch (error) {
         console.error('Error fetching category data:', error);
         setPosts([]);
+        setTotalPosts(0);
       } finally {
         setLoading(false);
       }
@@ -92,7 +113,7 @@ function CategoryContent() {
         <div className="text-center">
           <p className="text-lg text-gray-600 dark:text-gray-400">
             {category 
-              ? `Discover all our ${category.title.toLowerCase()} adventures and insights.`
+              ? `Discover all our ${category.title.toLowerCase()} adventures and insights. (${totalPosts} ${totalPosts === 1 ? 'story' : 'stories'} found)`
               : 'Explore our nature stories organized by category. Find content that matches your interests.'
             }
           </p>
@@ -128,19 +149,30 @@ function CategoryContent() {
         )}
       </div>
 
-      {posts && posts?.length === 0 && (
+      {posts && posts?.length === 0 && !loading && (
         <div className="flex h-40 items-center justify-center">
-          <span className="text-lg text-gray-500">
-            {categorySlug ? 'No posts found in this category.' : 'End of the result!'}
-          </span>
+          <div className="text-center">
+            <span className="text-lg text-gray-500 block mb-4">
+              {categorySlug ? `No posts found in the "${category?.title || categorySlug}" category.` : 'No posts found.'}
+            </span>
+            {categorySlug && (
+              <a
+                href="/category"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-brand-primary/10 hover:bg-brand-primary/20 text-brand-primary dark:text-brand-accent rounded-full text-sm font-medium transition-colors duration-200">
+                Browse all categories
+              </a>
+            )}
+          </div>
         </div>
       )}
 
-      <div className="mt-10 grid gap-10 md:grid-cols-2 lg:gap-10 xl:grid-cols-3">
-        {posts.map(post => (
-          <PostList key={post._id} post={post} aspect="square" />
-        ))}
-      </div>
+      {posts && posts.length > 0 && (
+        <div className="mt-10 grid gap-10 md:grid-cols-2 lg:gap-10 xl:grid-cols-3">
+          {posts.map(post => (
+            <PostList key={post._id} post={post} aspect="square" />
+          ))}
+        </div>
+      )}
 
       {posts.length > 0 && (
         <Pagination
