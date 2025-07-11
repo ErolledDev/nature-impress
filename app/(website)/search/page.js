@@ -37,7 +37,7 @@ export default function SearchPage() {
         <h1 className="text-3xl font-semibold tracking-tight dark:text-white lg:text-4xl lg:leading-snug mb-4">
           {query ? (
             <>
-              Search Results for <span>"{query}"</span>
+              Search Results for <span>&quot;{query}&quot;</span>
             </>
           ) : (
             'Search Nature Stories'
@@ -81,7 +81,7 @@ export default function SearchPage() {
               </div>
             </form>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Try searching for <span>"wildlife"</span>, <span>"conservation"</span>, <span>"forest"</span>, or any nature topic that interests you.
+              Try searching for <span>&quot;wildlife&quot;</span>, <span>&quot;conservation&quot;</span>, <span>&quot;forest&quot;</span>, or any nature topic that interests you.
             </p>
           </div>
         </div>
@@ -99,7 +99,7 @@ function SearchResults({ posts, query }) {
             No stories found
           </h3>
           <p className="text-gray-600 dark:text-gray-400 mb-6">
-            We couldn't find any nature stories matching <span>"{query}"</span>. Try different keywords or browse our categories.
+            We couldn&apos;t find any nature stories matching <span>&quot;{query}&quot;</span>. Try different keywords or browse our categories.
           </p>
           <div className="space-y-3">
             <a
@@ -111,7 +111,7 @@ function SearchResults({ posts, query }) {
               <a
                 href="/"
                 className="text-sm text-gray-500 hover:text-brand-primary dark:text-gray-400 dark:hover:text-brand-accent transition-colors duration-200">
-                ← Back to Home
+                &larr; Back to Home
               </a>
             </div>
           </div>
@@ -132,7 +132,7 @@ function SearchResults({ posts, query }) {
         <a
           href="/category"
           className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-brand-primary dark:text-gray-400 dark:hover:text-brand-accent transition-colors duration-200">
-          Browse all categories →
+          Browse all categories &rarr;
         </a>
       </div>
     </>
