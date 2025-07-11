@@ -1,6 +1,6 @@
 export async function GET() {
   // Remove trailing slash from siteUrl to prevent double slashes
-  const siteUrl = (process.env.SITE_URL || 'https://mydomain.com').replace(/\/$/, '');
+  const siteUrl = (process.env.SITE_URL || 'https://natures-impress.erolledph.workers.dev').replace(/\/$/, '');
   
   const robotsTxt = `User-agent: *
 Allow: /

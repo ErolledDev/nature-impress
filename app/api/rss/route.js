@@ -4,7 +4,7 @@ export async function GET() {
   try {
     const posts = await getAllPosts();
     // Remove trailing slash from siteUrl to prevent double slashes
-    const siteUrl = (process.env.SITE_URL || 'https://mydomain.com').replace(/\/$/, '');
+    const siteUrl = (process.env.SITE_URL || 'https://natures-impress.erolledph.workers.dev').replace(/\/$/, '');
     
     const rssItems = posts.slice(0, 20).map(post => {
       const postUrl = `${siteUrl}/post/${post.slug.current}/`;

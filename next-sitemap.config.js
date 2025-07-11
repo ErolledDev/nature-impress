@@ -2,7 +2,7 @@
 const { getAllPostsSlugs } = require('./lib/staticData/fetcher');
 
 module.exports = {
-  siteUrl: process.env.SITE_URL || "https://mydomain.com",
+  siteUrl: process.env.SITE_URL || "https://natures-impress.erolledph.workers.dev",
   generateRobotsTxt: true,
   changefreq: 'daily',
   priority: 0.7,
@@ -44,8 +44,8 @@ module.exports = {
       },
     ],
     additionalSitemaps: [
-      (process.env.SITE_URL || 'https://mydomain.com') + '/sitemap.xml',
-      (process.env.SITE_URL || 'https://mydomain.com') + '/api/rss/',
+      (process.env.SITE_URL || 'https://natures-impress.erolledph.workers.dev') + '/sitemap.xml',
+      (process.env.SITE_URL || 'https://natures-impress.erolledph.workers.dev') + '/api/rss/',
     ],
   },
 };

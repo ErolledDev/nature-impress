@@ -46,7 +46,7 @@ export async function generateMetadata({ params }) {
       images: post.mainImage?.src ? [post.mainImage.src] : [],
     },
     alternates: {
-      canonical: (process.env.SITE_URL || "https://mydomain.com") + `/post/${params.slug}/`,
+      canonical: (process.env.SITE_URL || "https://natures-impress.erolledph.workers.dev") + `/post/${params.slug}/`,
     },
   };
 }

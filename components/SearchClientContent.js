@@ -140,7 +140,11 @@ function SearchResults({ posts, query }) {
 
 export default function SearchClientContent() {
   return (
-    <Suspense fallback={<Loading />}>
+    <Suspense fallback={
+      <div className="mt-10">
+        <Loading />
+      </div>
+    }>
       <SearchContent />
     </Suspense>
   );

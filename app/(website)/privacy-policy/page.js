@@ -13,8 +13,8 @@ export default function PrivacyPolicyPage() {
           Privacy Policy
         </h1>
         
-        <div className="prose prose-lg dark:prose-invert max-w-none">
-          <p className="text-gray-600 dark:text-gray-400 mb-8 text-center">
+            <a href="mailto:hello@natures-impress.erolledph.workers.dev" className="text-brand-primary hover:text-brand-secondary dark:text-brand-accent transition-colors duration-200">
+              hello@natures-impress.erolledph.workers.dev
             Last updated: {new Date().toLocaleDateString()}
           </p>
 

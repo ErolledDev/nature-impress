@@ -2,6 +2,7 @@ import "@/styles/tailwind.css";
 import { Providers } from "./providers";
 import { cx } from "@/utils/all";
 import { Inter, Lora } from "next/font/google";
+import Script from "next/script";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -36,7 +37,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: process.env.SITE_URL || "https://mydomain.com",
+    url: process.env.SITE_URL || "https://natures-impress.erolledph.workers.dev",
     siteName: "Nature&apos;s Whispers",
     title: "Nature&apos;s Whispers - Exploring the Wild",
     description: "Discover the beauty and wonder of the natural world through captivating stories, stunning photography, and deep insights into wildlife and ecology. Join us on a journey through pristine wilderness.",
@@ -74,13 +75,13 @@ export const metadata = {
     yahoo: "your-yahoo-verification-code",
   },
   alternates: {
-    canonical: process.env.SITE_URL || "https://mydomain.com",
+    canonical: process.env.SITE_URL || "https://natures-impress.erolledph.workers.dev",
     languages: {
-      'en-US': process.env.SITE_URL || 'https://mydomain.com',
+      'en-US': process.env.SITE_URL || 'https://natures-impress.erolledph.workers.dev',
     },
     types: {
       'application/rss+xml': [
-        { url: (process.env.SITE_URL || 'https://mydomain.com') + '/api/rss/', title: "Nature&apos;s Whispers RSS Feed" },
+        { url: (process.env.SITE_URL || 'https://natures-impress.erolledph.workers.dev') + '/api/rss/', title: "Nature&apos;s Whispers RSS Feed" },
       ],
     },
   }
@@ -91,7 +92,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const metadataBase = new URL(process.env.SITE_URL || "https://mydomain.com");
+  const metadataBase = new URL(process.env.SITE_URL || "https://natures-impress.erolledph.workers.dev");
   
   return (
     <html
@@ -102,6 +103,24 @@ export default function RootLayout({
       </head>
       <body className="antialiased text-gray-800 dark:bg-black dark:text-gray-400">
         <Providers>{children}</Providers>
+        
+        {/* Google Analytics */}
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+              `}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   );

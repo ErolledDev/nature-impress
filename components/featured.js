@@ -24,7 +24,7 @@ export default function Featured({ post, pathPrefix }) {
               priority
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover transition-transform duration-300 hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 50vw"
             />
           </Link>
         </div>

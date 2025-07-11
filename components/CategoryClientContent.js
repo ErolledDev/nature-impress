@@ -4,6 +4,7 @@ import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import PostList from "@/components/postlist";
 import Pagination from "@/components/blog/pagination";
+import Loading from "@/components/loading";
 import { getPaginatedPosts, getCategoryBySlug, getAllCategories, getPostsByCategory } from "@/lib/staticData/fetcher";
 
 function CategoryContent() {
@@ -98,9 +99,7 @@ function CategoryContent() {
 
   if (loading) {
     return (
-      <div className="flex h-40 items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-brand-primary"></div>
-      </div>
+      <Loading />
     );
   }
 
