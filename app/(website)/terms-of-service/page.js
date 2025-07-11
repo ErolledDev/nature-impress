@@ -1,8 +1,8 @@
 import Container from "@/components/container";
 
 export const metadata = {
-  title: "Terms of Service | Nature&apos;s Whispers",
-  description: "Read the terms and conditions for using Nature&apos;s Whispers website and services.",
+  title: "Terms of Service | Nature's Whispers",
+  description: "Read the terms and conditions for using Nature's Whispers website and services.",
 };
 
 export default function TermsOfServicePage() {
@@ -34,7 +34,7 @@ export default function TermsOfServicePage() {
               Use License
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-4">
-              Permission is granted to temporarily download one copy of the materials on Nature's 
+              Permission is granted to temporarily download one copy of the materials on Nature&apos;s 
               Whispers website for personal, non-commercial transitory viewing only. This is the 
               grant of a license, not a transfer of title, and under this license you may not:
             </p>
