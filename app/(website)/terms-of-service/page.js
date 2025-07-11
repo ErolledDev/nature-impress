@@ -2,7 +2,7 @@ import Container from "@/components/container";
 
 export const metadata = {
   title: "Terms of Service | Nature&apos;s Whispers",
-  description: "Read the terms and conditions for using Nature's Whispers website and services.",
+  description: "Read the terms and conditions for using Nature&apos;s Whispers website and services.",
 };
 
 export default function TermsOfServicePage() {

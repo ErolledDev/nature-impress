@@ -2,7 +2,7 @@ import Container from "@/components/container";
 
 export const metadata = {
   title: "Disclaimer | Nature&apos;s Whispers",
-  description: "Important disclaimers and limitations regarding the content and services provided by Nature's Whispers.",
+  description: "Important disclaimers and limitations regarding the content and services provided by Nature&apos;s Whispers.",
 };
 
 export default function DisclaimerPage() {
@@ -23,7 +23,7 @@ export default function DisclaimerPage() {
               General Information
             </h2>
             <p className="text-gray-600 dark:text-gray-400">
-              The information on this website is provided on an "as-is" basis. To the fullest extent 
+              The information on this website is provided on an &quot;as-is&quot; basis. To the fullest extent 
               permitted by law, Nature&apos;s Whispers excludes all representations, warranties, obligations, 
               and liabilities arising out of or in connection with the information provided on this website.
             </p>
