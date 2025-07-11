@@ -52,7 +52,7 @@ export async function GET() {
       },
     });
   } catch (error) {
-    console.error('Error generating RSS feed:', error);
+    // RSS feed generation failed, returning error response
     return new Response('Error generating RSS feed', { status: 500 });
   }
 }

@@ -70,7 +70,7 @@ export default function PostList({
                 fontWeight === "normal"
                   ? "line-clamp-2 font-medium  tracking-normal text-black"
                   : "font-semibold leading-snug tracking-tight",
-                "mt-3 dark:text-white"
+                "mt-2 sm:mt-3 dark:text-white"
               )}>
               <Link
                 href={`/post/${pathPrefix ? `${pathPrefix}/` : ""}${
@@ -102,7 +102,7 @@ export default function PostList({
               )}
             </div>
 
-            <div className="mt-4 flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-3 text-gray-500 dark:text-gray-400">
+            <div className="mt-3 sm:mt-4 flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-3 text-gray-500 dark:text-gray-400">
               <Link href={`/author/${post?.author?.slug?.current}`}>
                 <div className="flex items-center gap-3">
                   <div className="relative h-5 w-5 flex-shrink-0">
@@ -112,7 +112,7 @@ export default function PostList({
                       </span>
                     </div>
                   </div>
-                  <span className="truncate text-sm hover:text-brand-primary dark:hover:text-brand-accent transition-colors duration-200">
+                  <span className="truncate text-xs sm:text-sm hover:text-brand-primary dark:hover:text-brand-accent transition-colors duration-200">
                     {post?.author?.name}
                   </span>
                 </div>
@@ -121,7 +121,7 @@ export default function PostList({
                 &bull;
               </span>
               <time
-                className="truncate text-sm"
+                className="truncate text-xs sm:text-sm"
                 dateTime={post?.publishedAt || post._createdAt}>
                 {format(
                   parseISO(post?.publishedAt || post._createdAt),

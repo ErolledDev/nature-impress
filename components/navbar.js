@@ -145,7 +145,7 @@ export default function Navbar(props) {
                         <Link
                           href={item.href}
                           key={`${item.label}${index}`}
-                          className="w-full px-4 py-3 text-base font-medium text-gray-600 hover:text-brand-primary hover:bg-brand-primary/5 dark:text-gray-400 dark:hover:text-brand-accent dark:hover:bg-brand-accent/5 rounded-md transition-all duration-200"
+                          className="w-full px-4 py-3 text-base font-medium text-gray-600 hover:text-brand-primary hover:bg-brand-primary/5 dark:text-gray-400 dark:hover:text-brand-accent dark:hover:bg-brand-accent/5 rounded-md transition-all duration-200 min-h-[44px] flex items-center"
                           target={item.external ? "_blank" : ""}
                           rel={item.external ? "noopener" : ""}>
                           {item.label}
@@ -153,7 +153,7 @@ export default function Navbar(props) {
                       )}
                     </Fragment>
                   ))}
-                  <div className="px-4 py-2">
+                  <div className="px-4 py-3">
                     <form action="/search" method="GET">
                       <SearchInput placeholder="Search nature stories..." />
                     </form>

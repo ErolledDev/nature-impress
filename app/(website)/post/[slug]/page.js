@@ -18,15 +18,15 @@ export async function generateMetadata({ params }) {
 
   return {
     title: post.title,
-    description: post.excerpt || `Discover ${post.title} - A captivating nature story from Nature&apos;s Whispers exploring the beauty and wonder of the natural world.`,
+    description: post.excerpt || `Explore the fascinating world of ${post.categories?.[0]?.title?.toLowerCase() || 'nature'} in this detailed story about ${post.title}. Discover wildlife behaviors, conservation insights, and stunning natural photography from Nature&apos;s Whispers.`,
     keywords: [
       ...(post.categories?.map(cat => cat.title) || []),
-      'nature', 'wildlife', 'environment', 'conservation'
+      'nature blog', 'wildlife photography', 'environmental conservation', 'nature stories'
     ],
     authors: [{ name: post.author?.name || 'Nature Explorer' }],
     openGraph: {
       title: post.title,
-      description: post.excerpt || `Discover ${post.title} - A captivating nature story from Nature&apos;s Whispers.`,
+      description: post.excerpt || `Explore the fascinating world of ${post.categories?.[0]?.title?.toLowerCase() || 'nature'} in this detailed story from Nature&apos;s Whispers.`,
       type: 'article',
       publishedTime: post.publishedAt || post._createdAt,
       authors: [post.author?.name || 'Nature Explorer'],
@@ -35,14 +35,14 @@ export async function generateMetadata({ params }) {
           url: post.mainImage.src,
           width: 1200,
           height: 630,
-          alt: post.mainImage.alt || post.title,
+          alt: post.mainImage.alt || `${post.title} - Nature photography from Nature's Whispers`,
         }
       ] : [],
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
-      description: post.excerpt || `Discover ${post.title} - A captivating nature story.`,
+      description: post.excerpt || `Explore ${post.categories?.[0]?.title?.toLowerCase() || 'nature'} stories and wildlife photography.`,
       images: post.mainImage?.src ? [post.mainImage.src] : [],
     },
     alternates: {

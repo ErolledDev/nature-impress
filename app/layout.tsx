@@ -20,9 +20,10 @@ export const metadata = {
   },
   description: "Discover the beauty and wonder of the natural world through captivating stories, stunning photography, and deep insights into wildlife and ecology. Join us on a journey through pristine wilderness, fascinating animal behaviors, and conservation efforts.",
   keywords: [
-    "Nature", "Wildlife", "Environment", "Outdoors", "Ecology", "Conservation",
-    "Photography", "Wilderness", "Animals", "Plants", "Sustainability",
-    "National Parks", "Biodiversity", "Climate Change", "Environmental Science"
+    "nature blog", "wildlife photography", "environmental conservation", "outdoor adventures", 
+    "nature stories", "wildlife behavior", "ecosystem protection", "nature exploration",
+    "environmental awareness", "wildlife conservation", "nature photography tips",
+    "sustainable living", "biodiversity protection", "climate action", "nature education"
   ],
   authors: [{ name: "Nature Explorer" }],
   creator: "Nature's Whispers",

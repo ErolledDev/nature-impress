@@ -120,14 +120,14 @@ function CategoryContent() {
         </div>
 
         {!category && (
-          <div className="flex flex-wrap justify-center gap-3 mt-8 mb-8">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mt-6 sm:mt-8 mb-6 sm:mb-8 px-4">
             {categories.map((cat) => (
               <a
                 key={cat.slug}
                 href={`/category?category=${cat.slug}`}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-brand-primary/10 hover:bg-brand-primary/20 text-brand-primary dark:text-brand-accent rounded-full text-sm font-medium transition-colors duration-200">
+                className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-brand-primary/10 hover:bg-brand-primary/20 text-brand-primary dark:text-brand-accent rounded-full text-xs sm:text-sm font-medium transition-colors duration-200">
                 <span>{cat.title}</span>
-                <span className="bg-brand-primary/20 text-xs px-2 py-0.5 rounded-full">
+                <span className="bg-brand-primary/20 text-xs px-1.5 sm:px-2 py-0.5 rounded-full">
                   {cat.count || 0}
                 </span>
               </a>
@@ -136,10 +136,10 @@ function CategoryContent() {
         )}
 
         {category && (
-          <div className="text-center mt-4 mb-8">
+          <div className="text-center mt-4 mb-6 sm:mb-8">
             <a
               href="/category"
-              className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-brand-primary dark:text-gray-400 dark:hover:text-brand-accent transition-colors duration-200">
+              className="inline-flex items-center gap-2 text-xs sm:text-sm text-gray-500 hover:text-brand-primary dark:text-gray-400 dark:hover:text-brand-accent transition-colors duration-200">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
@@ -167,7 +167,7 @@ function CategoryContent() {
       )}
 
       {posts && posts.length > 0 && (
-        <div className="mt-10 grid gap-10 md:grid-cols-2 lg:gap-10 xl:grid-cols-3">
+        <div className="mt-8 sm:mt-10 grid gap-6 sm:gap-8 md:grid-cols-2 lg:gap-10 xl:grid-cols-3">
           {posts.map(post => (
             <PostList key={post._id} post={post} aspect="square" />
           ))}

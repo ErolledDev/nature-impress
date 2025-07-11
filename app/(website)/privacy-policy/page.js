@@ -18,8 +18,8 @@ export default function PrivacyPolicyPage() {
             Last updated: {new Date().toLocaleDateString()}
           </p>
 
-          <section className="mb-8">
-            <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">
+          <section className="mb-6 sm:mb-8">
+            <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-3 sm:mb-4">
               Information We Collect
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-4">

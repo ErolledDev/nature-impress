@@ -23,7 +23,7 @@ export async function GET() {
       const slugs = await getAllPostsSlugs();
       postSlugs = slugs.map(({ slug }) => `/post/${slug}/`);
     } catch (error) {
-      console.warn('Could not fetch post slugs for sitemap:', error.message);
+      // Using static pages only when post slugs cannot be fetched
     }
 
     // Combine all URLs
@@ -47,7 +47,6 @@ ${allUrls.map(url => `  <url>
       },
     });
   } catch (error) {
-    console.error('Error generating sitemap:', error);
     return new Response('Error generating sitemap', { status: 500 });
   }
 }

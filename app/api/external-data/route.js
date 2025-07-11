@@ -3,7 +3,6 @@ export async function GET() {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     
     if (!apiUrl) {
-      console.error('NEXT_PUBLIC_API_URL environment variable is not set');
       return Response.json(
         { error: 'API URL not configured' },
         { status: 500 }
@@ -34,7 +33,6 @@ export async function GET() {
       },
     });
   } catch (error) {
-    console.error('Error fetching data from external API:', error.message);
     return Response.json(
       { error: 'Failed to fetch data from external API' },
       { status: 500 }
