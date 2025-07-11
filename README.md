@@ -1,4 +1,4 @@
-# Nature's Whisper
+# Nature's Whisper.
 
 Nature's Whisper is a static blog built with Next.js SSG (Static Site Generation), designed to share insights, stories, and inspiration about the natural world.
 
