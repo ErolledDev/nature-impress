@@ -15,7 +15,7 @@ export default function TermsOfServicePage() {
         
         <div className="prose prose-lg dark:prose-invert max-w-none">
           <p className="text-gray-600 dark:text-gray-400 mb-8 text-center">
-            Last updated: {new Date().toLocaleDateString()}
+            please do not use this service.
           </p>
 
           <section className="mb-8">
