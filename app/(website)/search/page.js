@@ -35,14 +35,23 @@ export default function SearchPage() {
     <Container className="relative">
       <div className="text-center mb-8">
         <h1 className="text-3xl font-semibold tracking-tight dark:text-white lg:text-4xl lg:leading-snug mb-4">
-          {query ? `Search Results for "${query}"` : 'Search Nature Stories'}
+          {query ? (
+            <>
+              Search Results for <span>&quot;{query}&quot;</span>
+            </>
+          ) : (
+            'Search Nature Stories'
+          )}
         </h1>
         <div className="text-center">
           <p className="text-lg text-gray-600 dark:text-gray-400">
-            {query 
-              ? `Found ${posts.length} ${posts.length === 1 ? 'story' : 'stories'} matching your search.`
-              : 'Enter a search term to find nature stories, wildlife adventures, and conservation insights.'
-            }
+            {query ? (
+              <>
+                Found {posts.length} {posts.length === 1 ? 'story' : 'stories'} matching your search.
+              </>
+            ) : (
+              'Enter a search term to find nature stories, wildlife adventures, and conservation insights.'
+            )}
           </p>
         </div>
       </div>
@@ -90,7 +99,7 @@ function SearchResults({ posts, query }) {
             No stories found
           </h3>
           <p className="text-gray-600 dark:text-gray-400 mb-6">
-            We couldn&apos;t find any nature stories matching &quot;{query}&quot;. Try different keywords or browse our categories.
+            We couldn&apos;t find any nature stories matching <span>&quot;{query}&quot;</span>. Try different keywords or browse our categories.
           </p>
           <div className="space-y-3">
             <a
