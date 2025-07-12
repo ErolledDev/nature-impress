@@ -13,6 +13,8 @@ export default function PrivacyPolicyPage() {
           Privacy Policy
         </h1>
         
+        <div className="prose prose-lg mx-auto dark:prose-invert max-w-none">
+          <p className="text-center text-gray-600 dark:text-gray-400 mb-8">
             Contact us at{" "}
             <a href="mailto:hello@natures-impress.erolledph.workers.dev" className="text-brand-primary hover:text-brand-secondary dark:text-brand-accent transition-colors duration-200">
               hello@natures-impress.erolledph.workers.dev
