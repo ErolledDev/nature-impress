@@ -77,6 +77,7 @@ export default function Contact({ settings }) {
           <ContactForm settings={settings} apiKey={apiKey} />
         </div>
       </div>
+
     </Container>
   );
 }

@@ -125,7 +125,7 @@ export default function Navbar(props) {
                   ))}
                   <div className="ml-4">
                     <form action="/search" method="GET">
-                      <SearchInput placeholder="Search nature stories..." />
+                      <SearchInput placeholder="Search" />
                     </form>
                   </div>
                 </div>

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useWeb3Forms } from "@web3forms/react";
+import useWeb3Forms from "@web3forms/react";
 
 export default function ContactFormComponent({ settings, apiKey }) {
   const {

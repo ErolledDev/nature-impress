@@ -1,6 +1,6 @@
 import PostPage from "./default";
 
-import { getAllPostsSlugs, getPostBySlug } from "@/lib/staticData/fetcher";
+import { getAllPostsSlugs, getPostBySlug, getSettings } from "@/lib/staticData/fetcher";
 
 export async function generateStaticParams() {
   return await getAllPostsSlugs();
@@ -53,7 +53,8 @@ export async function generateMetadata({ params }) {
 
 export default async function PostDefault({ params }) {
   const post = await getPostBySlug(params.slug);
-  return <PostPage post={post} />;
+  const settings = await getSettings();
+  return <PostPage post={post} settings={settings} />;
 }
 
 // export const revalidate = 60;

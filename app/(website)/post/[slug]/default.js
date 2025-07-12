@@ -6,9 +6,11 @@ import { parseISO, format } from "date-fns";
 
 import CategoryLabel from "@/components/blog/category";
 import AuthorCard from "@/components/blog/authorCard";
+import ValineComments from "@/components/ValineComments";
+import SubscriptionFormComponent from "@/components/SubscriptionFormComponent";
 
 export default function Post(props) {
-  const { loading, post } = props;
+  const { loading, post, settings } = props;
 
   const slug = post?.slug?.current;
 
@@ -104,6 +106,26 @@ export default function Post(props) {
 
           {/* Author Card */}
           {post.author && <AuthorCard author={post.author} />}
+
+          {/* Newsletter Subscription Section */}
+          <div className="mt-12 sm:mt-16">
+            <div className="text-center mb-6 sm:mb-8">
+              <h3 className="text-xl sm:text-2xl font-semibold text-gray-800 dark:text-white mb-3 sm:mb-4">
+                Stay Connected with Nature
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">
+                Join our community of nature enthusiasts and receive weekly updates featuring 
+                the latest wildlife stories, conservation news, and stunning photography from the wild.
+              </p>
+            </div>
+            
+            <div className="max-w-2xl mx-auto">
+              <SubscriptionFormComponent settings={settings} />
+            </div>
+          </div>
+
+          {/* Valine Comments Section */}
+          <ValineComments postSlug={post.slug.current} />
         </article>
       </Container>
     </>
