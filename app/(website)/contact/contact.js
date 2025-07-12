@@ -3,14 +3,12 @@
 import Container from "@/components/container";
 import { useState, Suspense, lazy } from "react";
 import { useForm } from "react-hook-form";
+import { useWeb3Forms } from "@web3forms/react";
 import {
   MapPinIcon,
   EnvelopeIcon,
   PhoneIcon
 } from "@heroicons/react/24/outline";
-
-// Lazy load the Web3Forms hook to improve initial page load performance
-const useWeb3Forms = lazy(() => import("@web3forms/react").then(module => ({ default: module.default })));
 
 function ContactForm({ settings, apiKey }) {
   const {
@@ -23,35 +21,27 @@ function ContactForm({ settings, apiKey }) {
   });
   const [isSuccess, setIsSuccess] = useState(false);
   const [message, setMessage] = useState(false);
-  const [Web3FormsHook, setWeb3FormsHook] = useState(null);
 
-  // Dynamically import and initialize Web3Forms when component mounts
-  useState(() => {
-    import("@web3forms/react").then(({ default: useWeb3Forms }) => {
-      const { submit: onSubmit } = useWeb3Forms({
-        access_key: apiKey,
-        settings: {
-          from_name: "Nature's Whispers",
-          subject: "New Contact Message from Nature's Whispers Website"
-        },
-        onSuccess: (msg, data) => {
-          setIsSuccess(true);
-          setMessage(msg);
-          reset();
-        },
-        onError: (msg, data) => {
-          setIsSuccess(false);
-          setMessage(msg);
-        }
-      });
-      setWeb3FormsHook(() => onSubmit);
-    });
-  }, [apiKey, reset]);
+  // Initialize Web3Forms hook properly
+  const { submit: onSubmit } = useWeb3Forms({
+    access_key: apiKey,
+    settings: {
+      from_name: "Nature's Whispers",
+      subject: "New Contact Message from Nature's Whispers Website"
+    },
+    onSuccess: (msg, data) => {
+      setIsSuccess(true);
+      setMessage(msg);
+      reset();
+    },
+    onError: (msg, data) => {
+      setIsSuccess(false);
+      setMessage(msg);
+    }
+  });
 
   const handleFormSubmit = (data) => {
-    if (Web3FormsHook) {
-      Web3FormsHook(data);
-    }
+    onSubmit(data);
   };
 
   return (
@@ -138,7 +128,7 @@ function ContactForm({ settings, apiKey }) {
 
       <button
         type="submit"
-        disabled={!Web3FormsHook || isSubmitting}
+        disabled={isSubmitting}
         className="w-full py-3 sm:py-4 font-semibold text-white transition-colors bg-gray-900 rounded-md hover:bg-gray-800 focus:outline-none focus:ring-offset-2 focus:ring focus:ring-gray-200 px-7 dark:bg-white dark:text-black min-h-[44px] disabled:opacity-50 disabled:cursor-not-allowed">
         {isSubmitting ? (
           <svg
@@ -158,8 +148,6 @@ function ContactForm({ settings, apiKey }) {
               fill="currentColor"
               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
           </svg>
-        ) : !Web3FormsHook ? (
-          "Loading..."
         ) : (
           "Send Message"
         )}
@@ -224,13 +212,7 @@ export default function Contact({ settings }) {
           </div>
         </div>
         <div>
-          <Suspense fallback={
-            <div className="my-10 flex items-center justify-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-brand-primary"></div>
-            </div>
-          }>
-            <ContactForm settings={settings} apiKey={apiKey} />
-          </Suspense>
+          <ContactForm settings={settings} apiKey={apiKey} />
         </div>
       </div>
     </Container>
