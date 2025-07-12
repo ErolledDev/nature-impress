@@ -13,8 +13,11 @@ export default function PrivacyPolicyPage() {
           Privacy Policy
         </h1>
         
+            Contact us at{" "}
             <a href="mailto:hello@natures-impress.erolledph.workers.dev" className="text-brand-primary hover:text-brand-secondary dark:text-brand-accent transition-colors duration-200">
               hello@natures-impress.erolledph.workers.dev
+            </a>
+            {" • "}
             Last updated: {new Date().toLocaleDateString()}
           </p>
 
