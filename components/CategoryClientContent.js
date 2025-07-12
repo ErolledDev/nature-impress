@@ -101,9 +101,13 @@ function CategoryContent() {
     return (
       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-screen-lg py-6 sm:py-8 md:py-10 lg:py-12">
         {/* Page Header Skeleton */}
-        <div className="text-center mb-8 animate-pulse">
-          <div className="h-10 sm:h-12 lg:h-14 bg-gray-200 dark:bg-gray-700 rounded-lg mb-4 mx-auto max-w-md"></div>
-          <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded mx-auto max-w-lg"></div>
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-semibold tracking-tight dark:text-white lg:text-4xl lg:leading-snug mb-4 min-h-[2.5rem] sm:min-h-[3rem] lg:min-h-[3.5rem]">
+            Browse by Categories
+          </h1>
+          <p className="text-lg text-gray-600 dark:text-gray-400 min-h-[1.75rem]">
+            Explore our nature stories organized by category. Find content that matches your interests.
+          </p>
         </div>
         
         <Loading count={6} aspect="square" layout="grid" />

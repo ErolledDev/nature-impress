@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 export default function SubscriptionFormComponent({ settings }) {
@@ -14,39 +14,94 @@ export default function SubscriptionFormComponent({ settings }) {
   });
   const [isSuccess, setIsSuccess] = useState(false);
   const [message, setMessage] = useState(false);
+  const [isLeanCloudReady, setIsLeanCloudReady] = useState(false);
 
-  const handleFormSubmit = async (data) => {
-    try {
-      // Add subscription metadata to the form data
-    const subscriptionData = {
-      ...data,
-        name: data.name || '', // Optional name field
-      subscription_type: "Newsletter",
-      interests: "Nature stories, Wildlife photography, Conservation insights"
+  // Initialize LeanCloud once when component mounts
+  useEffect(() => {
+    const initLeanCloud = async () => {
+      try {
+        // Dynamically import LeanCloud SDK
+        const AV = (await import('leancloud-storage')).default;
+        
+        // Get environment variables
+        const appId = process.env.NEXT_PUBLIC_VALINE_APP_ID;
+        const appKey = process.env.NEXT_PUBLIC_VALINE_APP_KEY;
+        const serverURLs = process.env.NEXT_PUBLIC_VALINE_SERVER_URLS;
+
+        if (!appId || !appKey) {
+          throw new Error('LeanCloud configuration missing. Please check your environment variables.');
+        }
+
+        // Initialize LeanCloud only once
+        AV.init({
+          appId: appId,
+          appKey: appKey,
+          serverURL: serverURLs
+        });
+
+        // Store AV instance globally for use in form submission
+        window.AV = AV;
+        setIsLeanCloudReady(true);
+      } catch (error) {
+        console.error('Failed to initialize LeanCloud:', error);
+        setMessage('Failed to initialize subscription service. Please try again later.');
+        setIsSuccess(false);
+      }
     };
 
-      // Send data to our API route
-      const response = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(subscriptionData),
-      });
+    initLeanCloud();
+  }, []); // Empty dependency array ensures this runs only once
 
-      const result = await response.json();
+  const handleFormSubmit = async (data) => {
+    if (!isLeanCloudReady || !window.AV) {
+      setMessage('Subscription service is not ready. Please try again in a moment.');
+      setIsSuccess(false);
+      return;
+    }
 
-      if (result.success) {
-        setIsSuccess(true);
-        setMessage(result.message);
-        reset();
+    try {
+      // Use the already initialized AV instance
+      const AV = window.AV;
+
+      // Add subscription metadata to the form data
+      const subscriptionData = {
+        ...data,
+        name: data.name || '', // Optional name field
+        subscription_type: "Newsletter",
+        interests: "Nature stories, Wildlife photography, Conservation insights"
+      };
+
+      // Create a new subscription object in LeanCloud
+      const Subscription = AV.Object.extend('Subscription');
+      const subscription = new Subscription();
+
+      // Set the subscription data
+      subscription.set('email', subscriptionData.email);
+      subscription.set('name', subscriptionData.name);
+      subscription.set('subscriptionType', subscriptionData.subscription_type);
+      subscription.set('interests', subscriptionData.interests);
+      subscription.set('subscribedAt', new Date());
+      subscription.set('status', 'active');
+      subscription.set('source', 'website');
+
+      // Save to LeanCloud
+      await subscription.save();
+
+      setIsSuccess(true);
+      setMessage('Thank you for subscribing to Nature&apos;s Whispers! You&apos;ll receive our latest nature stories and wildlife insights.');
+      reset();
+
+    } catch (error) {
+      console.error('Subscription error:', error);
+      
+      // Handle duplicate email error
+      if (error.code === 137) {
+        setIsSuccess(false);
+        setMessage('This email is already subscribed to our newsletter.');
       } else {
         setIsSuccess(false);
-        setMessage(result.message);
+        setMessage('Something went wrong. Please try again later.');
       }
-    } catch (error) {
-      setIsSuccess(false);
-      setMessage("Network error. Please check your connection and try again.");
     }
   };
 
@@ -102,9 +157,30 @@ export default function SubscriptionFormComponent({ settings }) {
 
         <button
           type="submit"
-          disabled={isSubmitting}
+          disabled={isSubmitting || !isLeanCloudReady}
           className="w-full py-3 sm:py-4 font-semibold text-white transition-all duration-200 bg-brand-primary rounded-lg hover:bg-brand-secondary focus:outline-none focus:ring-4 focus:ring-brand-primary/20 disabled:opacity-50 disabled:cursor-not-allowed min-h-[48px] flex items-center justify-center">
-          {isSubmitting ? (
+          {!isLeanCloudReady ? (
+            <div className="flex items-center gap-2">
+              <svg
+                className="w-5 h-5 animate-spin"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24">
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              <span>Initializing...</span>
+            </div>
+          ) : isSubmitting ? (
             <div className="flex items-center gap-2">
               <svg
                 className="w-5 h-5 animate-spin"
