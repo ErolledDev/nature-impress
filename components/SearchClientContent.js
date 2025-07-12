@@ -57,7 +57,17 @@ function SearchContent() {
 
       {query && (
         <>
-          {loading ? <Loading /> : <SearchResults posts={posts} query={query} />}
+          {loading ? (
+            <div>
+              {/* Search Results Header Skeleton */}
+              <div className="text-center mb-8 animate-pulse">
+                <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded mx-auto max-w-sm mb-4"></div>
+              </div>
+              <Loading count={6} aspect="square" layout="grid" />
+            </div>
+          ) : (
+            <SearchResults posts={posts} query={query} />
+          )}
         </>
       )}
 

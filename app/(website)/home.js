@@ -11,6 +11,17 @@ export default function Post({ posts }) {
   const [displayLimit, setDisplayLimit] = useState(14);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Ensure posts are properly sorted by date (newest first) with featured posts prioritized
+  const sortedPosts = posts ? posts.sort((a, b) => {
+    // First, prioritize featured posts
+    if (a.featured && !b.featured) return -1;
+    if (!a.featured && b.featured) return 1;
+    // Then sort by publish date (newest first)
+    const dateA = new Date(a.publishedAt || a._createdAt);
+    const dateB = new Date(b.publishedAt || b._createdAt);
+    return dateB - dateA;
+  }) : [];
+
   const handleLoadMore = () => {
     setIsLoading(true);
     // Simulate loading delay for better UX
@@ -20,8 +31,8 @@ export default function Post({ posts }) {
     }, 500);
   };
 
-  const hasMorePosts = posts && posts.length > displayLimit;
-  const displayedPosts = posts ? posts.slice(0, displayLimit) : [];
+  const hasMorePosts = sortedPosts && sortedPosts.length > displayLimit;
+  const displayedPosts = sortedPosts ? sortedPosts.slice(0, displayLimit) : [];
 
   return (
     <>

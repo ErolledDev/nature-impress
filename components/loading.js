@@ -1,17 +1,70 @@
-export default function Loading() {
+export default function Loading({ count = 6, aspect = "square", layout = "grid" }) {
   return (
-    <div className="mt-10 grid gap-10 md:grid-cols-2 lg:gap-10 xl:grid-cols-3">
-      {new Array(6).fill().map((item, index) => (
-        // eslint-disable-next-line react/no-array-index-key
-        <div key={index}>
-          <SkeletonImg />
-        </div>
+    <div className={`mt-10 grid gap-6 sm:gap-8 lg:gap-10 ${
+      layout === "featured" 
+        ? "md:grid-cols-2 xl:gap-12" 
+        : layout === "grid" 
+        ? "sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3" 
+        : "grid-cols-1"
+    }`}>
+      {new Array(count).fill().map((item, index) => (
+        <PostCardSkeleton 
+          key={index} 
+          aspect={aspect}
+          featured={layout === "featured" && index < 2}
+        />
       ))}
     </div>
   );
 }
 
-const SkeletonImg = () => {
+const PostCardSkeleton = ({ aspect = "square", featured = false }) => {
+  return (
+    <div className="group cursor-pointer animate-pulse">
+      {/* Image Skeleton */}
+      <div className={`overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800 ${
+        aspect === "landscape" ? "aspect-video" : "aspect-square"
+      }`}>
+        <PostCardImageSkeleton aspect={aspect} />
+      </div>
+
+      {/* Content Skeleton */}
+      <div className="mt-4 sm:mt-6">
+        {/* Category Skeleton */}
+        <div className="mb-2 sm:mb-3">
+          <div className="inline-block h-6 w-20 bg-gray-200 dark:bg-gray-700 rounded-md"></div>
+        </div>
+
+        {/* Title Skeleton */}
+        <div className="space-y-2 mb-3 sm:mb-4">
+          <div className={`h-6 bg-gray-200 dark:bg-gray-700 rounded ${
+            featured ? "sm:h-8" : ""
+          }`}></div>
+          <div className={`h-6 bg-gray-200 dark:bg-gray-700 rounded w-3/4 ${
+            featured ? "sm:h-8" : ""
+          }`}></div>
+        </div>
+
+        {/* Author and Date Skeleton */}
+        <div className="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-3">
+          <div className="flex items-center gap-3">
+            {/* Author Avatar */}
+            <div className="h-5 w-5 bg-gray-200 dark:bg-gray-700 rounded-full flex-shrink-0"></div>
+            {/* Author Name */}
+            <div className="h-4 w-24 bg-gray-200 dark:bg-gray-700 rounded"></div>
+          </div>
+          {/* Date */}
+          <div className="h-4 w-20 bg-gray-200 dark:bg-gray-700 rounded"></div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const PostCardImageSkeleton = ({ aspect }) => {
+  const viewBox = aspect === "landscape" ? "0 0 500 281" : "0 0 500 500";
+  const imageHeight = aspect === "landscape" ? "281" : "500";
+  
   const style = `
      .dark svg#skeleton #colorbase {
         stop-color: #2d2d2d;
@@ -20,14 +73,16 @@ const SkeletonImg = () => {
         stop-color: #3d3d3d;
       }
   `;
+  
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       role="img"
       id="skeleton"
       aria-labelledby="loading-aria"
-      viewBox="0 0 500 750"
-      preserveAspectRatio="none">
+      viewBox={viewBox}
+      preserveAspectRatio="xMidYMid slice"
+      className="w-full h-full">
       <title id="loading-aria">Loading...</title>
       <style dangerouslySetInnerHTML={{ __html: style }} />
       <rect
@@ -45,38 +100,9 @@ const SkeletonImg = () => {
             y="0"
             rx="10"
             ry="10"
-            width="505"
-            height="505"
+            width="500"
+            height={imageHeight}
           />
-          <rect x="0" y="585" rx="0" ry="0" width="480" height="18" />
-          <rect x="0" y="625" rx="0" ry="0" width="365" height="18" />
-          <rect x="0" y="535" rx="0" ry="0" width="154" height="21" />
-          <rect
-            x="-10"
-            y="433"
-            rx="2"
-            ry="2"
-            width="365"
-            height="1"
-          />
-          <rect
-            x="60"
-            y="676"
-            rx="0"
-            ry="0"
-            width="164"
-            height="27"
-          />
-          <rect
-            x="277"
-            y="683"
-            rx="0"
-            ry="0"
-            width="179"
-            height="14"
-          />
-          <circle cx="20" cy="689" r="18" />
-          <circle cx="250" cy="690" r="4" />
         </clipPath>
         <linearGradient id="fill">
           <stop

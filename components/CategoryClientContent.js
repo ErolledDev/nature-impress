@@ -99,7 +99,15 @@ function CategoryContent() {
 
   if (loading) {
     return (
-      <Loading />
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-screen-lg py-6 sm:py-8 md:py-10 lg:py-12">
+        {/* Page Header Skeleton */}
+        <div className="text-center mb-8 animate-pulse">
+          <div className="h-10 sm:h-12 lg:h-14 bg-gray-200 dark:bg-gray-700 rounded-lg mb-4 mx-auto max-w-md"></div>
+          <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded mx-auto max-w-lg"></div>
+        </div>
+        
+        <Loading count={6} aspect="square" layout="grid" />
+      </div>
     );
   }
 
