@@ -23,6 +23,7 @@ export default function Featured({ post, pathPrefix }) {
               alt={post.mainImage?.alt || post.title}
               priority
               fill
+              quality={90}
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 50vw"
             />
           </Link>

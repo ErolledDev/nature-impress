@@ -63,8 +63,13 @@ export default function Post({ posts }) {
 
           {/* Recent Posts Grid */}
           <div className="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:gap-10">
-            {displayedPosts.slice(2).map(post => (
-              <PostList key={post._id} post={post} aspect="square" />
+            {displayedPosts.slice(2).map((post, index) => (
+              <PostList 
+                key={post._id} 
+                post={post} 
+                aspect="square"
+                preloadImage={index < 4}
+              />
             ))}
           </div>
 

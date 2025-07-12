@@ -65,15 +65,6 @@ const PostCardImageSkeleton = ({ aspect }) => {
   const viewBox = aspect === "landscape" ? "0 0 500 281" : "0 0 500 500";
   const imageHeight = aspect === "landscape" ? "281" : "500";
   
-  const style = `
-     .dark svg#skeleton #colorbase {
-        stop-color: #2d2d2d;
-      }
-      .dark svg#skeleton #colorhighlight {
-        stop-color: #3d3d3d;
-      }
-  `;
-  
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -84,7 +75,14 @@ const PostCardImageSkeleton = ({ aspect }) => {
       preserveAspectRatio="xMidYMid slice"
       className="w-full h-full">
       <title id="loading-aria">Loading...</title>
-      <style dangerouslySetInnerHTML={{ __html: style }} />
+      <style>{`
+        .dark svg#skeleton #colorbase {
+          stop-color: #2d2d2d;
+        }
+        .dark svg#skeleton #colorhighlight {
+          stop-color: #3d3d3d;
+        }
+      `}</style>
       <rect
         x="0"
         y="0"

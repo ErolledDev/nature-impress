@@ -100,6 +100,8 @@ export default function RootLayout({
       className={cx(inter.variable, lora.variable)}>
       <head>
         <link rel="canonical" href={metadataBase.toString()} />
+        <link rel="preconnect" href="https://images.pexels.com" />
+        <link rel="dns-prefetch" href="https://images.pexels.com" />
       </head>
       <body className="antialiased text-gray-800 dark:bg-black dark:text-gray-400">
         <Providers>{children}</Providers>

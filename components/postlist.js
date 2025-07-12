@@ -44,6 +44,7 @@ export default function PostList({
                 priority={preloadImage ? true : false}
                 className="object-cover transition-all duration-300"
                 fill
+                quality={85}
                 sizes={
                   aspect === "landscape" 
                     ? "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 50vw"

@@ -76,6 +76,7 @@ export default function Post(props) {
             alt={post.mainImage?.alt || post.title}
             loading="eager"
             fill
+            quality={90}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 80vw"
             className="object-cover"
             priority
