@@ -1,5 +1,6 @@
 import Container from "@/components/container";
 import Link from "next/link";
+import Image from "next/image";
 import { cx } from "@/utils/all";
 
 export default function About({ authors, settings }) {
@@ -16,11 +17,12 @@ export default function About({ authors, settings }) {
 
       <div className="mb-8 sm:mb-12 lg:mb-16 px-4">
         <div className="relative aspect-video sm:aspect-[21/9] lg:aspect-[3/1] overflow-hidden rounded-2xl shadow-2xl">
-          <img
+          <Image
             src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80"
             alt="Beautiful forest landscape with misty mountains and tall trees - Nature's Whispers team exploring the wilderness"
-            className="w-full h-full object-cover"
-            loading="lazy"
+            fill
+            className="object-cover"
+            priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
           <div className="absolute bottom-6 left-6 right-6 text-white">
@@ -28,7 +30,7 @@ export default function About({ authors, settings }) {
               Our Team in the Wild
             </h3>
             <p className="text-sm sm:text-base lg:text-lg opacity-90">
-              Passionate explorers documenting nature's incredible stories
+              Passionate explorers documenting nature&apos;s incredible stories
             </p>
           </div>
         </div>
