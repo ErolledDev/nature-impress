@@ -32,12 +32,15 @@ export default function SubscriptionFormComponent({ settings }) {
           throw new Error('LeanCloud configuration missing. Please check your environment variables.');
         }
 
-        // Initialize LeanCloud only once
-        AV.init({
-          appId: appId,
-          appKey: appKey,
-          serverURL: serverURLs
-        });
+        // Check if LeanCloud is already initialized to prevent redefinition error
+        if (!AV.applicationId) {
+          // Initialize LeanCloud only if not already initialized
+          AV.init({
+            appId: appId,
+            appKey: appKey,
+            serverURL: serverURLs
+          });
+        }
 
         // Store AV instance globally for use in form submission
         window.AV = AV;
