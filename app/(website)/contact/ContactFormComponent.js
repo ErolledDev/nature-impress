@@ -16,27 +16,47 @@ export default function ContactFormComponent({ settings, apiKey }) {
   const [isSuccess, setIsSuccess] = useState(false);
   const [message, setMessage] = useState(false);
 
-  // Initialize Web3Forms hook properly
+  // Initialize Web3Forms hook with explicit configuration
   const { submit: onSubmit } = useWeb3Forms({
     access_key: apiKey,
     settings: {
       from_name: "Nature's Whispers",
       subject: "New Contact Message from Nature's Whispers Website",
-      redirect: false // Explicitly disable redirect to prevent CORS issues
+      redirect: false, // Explicitly disable redirect to prevent CORS issues
+      return_json: true // Ensure JSON response
     },
     onSuccess: (msg, data) => {
+      console.log("Form submission successful:", msg, data);
       setIsSuccess(true);
-      setMessage(msg);
+      setMessage(msg || "Thank you for your message! We'll get back to you soon.");
       reset();
     },
     onError: (msg, data) => {
+      console.error("Form submission error:", msg, data);
       setIsSuccess(false);
-      setMessage(msg);
+      setMessage(msg || "Something went wrong. Please try again later.");
     }
   });
 
-  const handleFormSubmit = (data) => {
-    onSubmit(data);
+  const handleFormSubmit = async (data) => {
+    try {
+      // Add additional form data
+      const formData = {
+        ...data,
+        access_key: apiKey,
+        from_name: "Nature's Whispers",
+        subject: "New Contact Message from Nature's Whispers Website"
+      };
+
+      console.log("Submitting form data:", formData);
+      
+      // Call the Web3Forms submit function
+      await onSubmit(formData);
+    } catch (error) {
+      console.error("Form submission failed:", error);
+      setIsSuccess(false);
+      setMessage("Failed to send message. Please try again later.");
+    }
   };
 
   return (
