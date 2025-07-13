@@ -13,7 +13,8 @@ const nextConfig = {
     minimumCacheTTL: 31536000, // 1 year
     remotePatterns: [
       { hostname: "images.pexels.com" },
-      { hostname: "firebasestorage.googleapis.com" }
+      { hostname: "firebasestorage.googleapis.com" },
+      { hostname: "images.unsplash.com" }
     ]
   },
   experimental: {
