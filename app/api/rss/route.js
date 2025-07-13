@@ -1,5 +1,20 @@
 import { getAllPosts } from '@/lib/staticData/fetcher';
 
+// Helper function to escape XML entities
+function escapeXml(unsafe) {
+  if (!unsafe) return '';
+  return unsafe.replace(/[<>&'"]/g, function (c) {
+    switch (c) {
+      case '<': return '&lt;';
+      case '>': return '&gt;';
+      case '&': return '&amp;';
+      case '\'': return '&apos;';
+      case '"': return '&quot;';
+      default: return c;
+    }
+  });
+}
+
 export async function GET() {
   try {
     const posts = await getAllPosts();
@@ -19,7 +34,7 @@ export async function GET() {
       <pubDate>${pubDate}</pubDate>
       <author><![CDATA[hello@mydomain.com (${post.author.name})]]></author>
       ${post.categories.map(cat => `<category><![CDATA[${cat.title}]]></category>`).join('')}
-      ${post.mainImage?.src ? `<enclosure url="${post.mainImage.src}" type="image/jpeg" />` : ''}
+      ${post.mainImage?.src ? `<enclosure url="${escapeXml(post.mainImage.src)}" type="image/jpeg" />` : ''}
     </item>`;
     }).join('');
 

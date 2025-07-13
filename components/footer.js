@@ -39,7 +39,7 @@ export default function Footer(props) {
           </svg>
         </a>
         <a
-          href="/rss.xml"
+          href="/api/rss"
           className="text-gray-400 hover:text-brand-primary dark:hover:text-brand-accent transition-colors duration-200 p-2"
           aria-label="RSS Feed">
           <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
