@@ -1,6 +1,7 @@
 import { getSettings } from "@/lib/staticData/fetcher";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
+import PerformanceMonitor from "@/components/PerformanceMonitor";
 
 export async function generateMetadata() {
   const settings = await getSettings();
@@ -20,6 +21,7 @@ export default async function Layout({ children }) {
       <Navbar {...settings} />
       <div>{children}</div>
       <Footer {...settings} />
+      <PerformanceMonitor />
     </>
   );
 }

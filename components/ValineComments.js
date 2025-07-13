@@ -10,6 +10,10 @@ export default function ValineComments({ postSlug }) {
     // Only initialize once per component mount
     if (isInitialized.current) return;
 
+    // Add minimum height to prevent layout shift
+    if (valineRef.current) {
+      valineRef.current.style.minHeight = '200px';
+    }
     const initValine = async () => {
       try {
         // Dynamically import Valine
@@ -79,6 +83,7 @@ export default function ValineComments({ postSlug }) {
           ref={valineRef}
           id={`valine-comments-${postSlug}`}
           className="valine-container"
+          style={{ minHeight: '200px' }}
         />
       </div>
       

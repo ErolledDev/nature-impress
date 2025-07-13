@@ -109,7 +109,10 @@ export default function SubscriptionFormComponent({ settings }) {
   };
 
   return (
-    <div className="bg-gradient-to-br from-brand-primary/5 to-brand-secondary/5 dark:from-brand-primary/10 dark:to-brand-secondary/10 rounded-xl p-6 sm:p-8 border border-brand-primary/10 dark:border-brand-primary/20">
+    <div 
+      className="bg-gradient-to-br from-brand-primary/5 to-brand-secondary/5 dark:from-brand-primary/10 dark:to-brand-secondary/10 rounded-xl p-6 sm:p-8 border border-brand-primary/10 dark:border-brand-primary/20"
+      style={{ minHeight: '300px' }}
+    >
       <div className="text-center mb-6">
         <h3 className="text-xl sm:text-2xl font-semibold text-brand-primary dark:text-brand-accent mb-3">
           Join Nature&apos;s Whispers Newsletter

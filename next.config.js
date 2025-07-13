@@ -4,6 +4,9 @@ const nextConfig = {
   swcMinify: true,
   output: 'export',
   trailingSlash: true,
+  compress: true,
+  poweredByHeader: false,
+  generateEtags: false,
   images: {
     formats: ["image/avif", "image/webp"],
     unoptimized: true,
@@ -18,7 +21,9 @@ const nextConfig = {
     ]
   },
   experimental: {
-    optimizePackageImports: ['@heroicons/react']
+    optimizePackageImports: ['@heroicons/react', '@headlessui/react', 'date-fns'],
+    optimizeCss: true,
+    webVitalsAttribution: ['CLS', 'LCP', 'FCP', 'FID', 'TTFB']
   }
 };
 

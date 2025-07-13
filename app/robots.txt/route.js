@@ -20,7 +20,7 @@ Sitemap: ${siteUrl}/api/rss/`;
   return new Response(robotsTxt, {
     headers: {
       'Content-Type': 'text/plain; charset=utf-8',
-      'Cache-Control': 'public, max-age=86400, s-maxage=86400',
+      'Cache-Control': 'public, max-age=86400, s-maxage=86400, stale-while-revalidate=172800',
     },
   });
 }

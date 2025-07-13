@@ -63,10 +63,11 @@ export async function GET() {
     return new Response(rssXml, {
       headers: {
         'Content-Type': 'application/rss+xml; charset=utf-8',
-        'Cache-Control': 'public, max-age=3600, s-maxage=3600',
+        'Cache-Control': 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=7200',
       },
     });
   } catch (error) {
+    console.error('RSS generation error:', error);
     // RSS feed generation failed, returning error response
     return new Response('Error generating RSS feed', { status: 500 });
   }

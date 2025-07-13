@@ -69,6 +69,15 @@ const PostCardImageSkeleton = ({ aspect }) => {
   const imageHeight = aspect === "landscape" ? "281" : "500";
   
   return (
+    <div 
+      className="w-full h-full bg-gray-100 dark:bg-gray-800 animate-pulse rounded-lg"
+      style={{ aspectRatio: aspect === "landscape" ? "16/9" : "1/1" }}
+      aria-label="Loading image..."
+    />
+  );
+  
+  // Alternative: Keep SVG for more sophisticated animation
+  /* return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       role="img"
@@ -148,5 +157,5 @@ const PostCardImageSkeleton = ({ aspect }) => {
         </linearGradient>
       </defs>
     </svg>
-  );
+  ); */
 };

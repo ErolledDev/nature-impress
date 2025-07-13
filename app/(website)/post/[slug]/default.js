@@ -11,7 +11,6 @@ import { ShareIcon } from "@heroicons/react/24/outline";
 
 import CategoryLabel from "@/components/blog/category";
 import AuthorCard from "@/components/blog/authorCard";
-import SubscriptionFormComponent from "@/components/SubscriptionFormComponent";
 import SocialShareModal from "@/components/SocialShareModal";
 
 // Dynamically import ValineComments, ensuring it's not rendered on the server
@@ -19,6 +18,27 @@ const ValineComments = dynamic(() => import("@/components/ValineComments"), {
   ssr: false
 });
 
+// Dynamically import SubscriptionFormComponent to reduce initial bundle size
+const SubscriptionFormComponent = dynamic(() => import("@/components/SubscriptionFormComponent"), {
+  ssr: false,
+  loading: () => (
+    <div className="animate-pulse space-y-4 bg-gradient-to-br from-brand-primary/5 to-brand-secondary/5 dark:from-brand-primary/10 dark:to-brand-secondary/10 rounded-xl p-6 sm:p-8 border border-brand-primary/10 dark:border-brand-primary/20">
+      <div className="text-center mb-6">
+        <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded-lg w-3/4 mx-auto mb-3"></div>
+        <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-full"></div>
+      </div>
+      <div className="space-y-4">
+        <div className="h-12 bg-gray-200 dark:bg-gray-700 rounded-lg w-full"></div>
+        <div className="h-12 bg-gray-200 dark:bg-gray-700 rounded-lg w-full"></div>
+      </div>
+    </div>
+  )
+});
+
+// Dynamically import SocialShareModal to reduce initial bundle size
+const DynamicSocialShareModal = dynamic(() => import("@/components/SocialShareModal"), {
+  ssr: false
+});
 export default function Post(props) {
   const { loading, post, settings } = props;
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
@@ -201,8 +221,8 @@ export default function Post(props) {
           </div>
         </article>
 
-        {/* Social Share Modal */}
-        <SocialShareModal
+        {/* Dynamic Social Share Modal */}
+        <DynamicSocialShareModal
           isOpen={isShareModalOpen}
           onClose={() => setIsShareModalOpen(false)}
           postUrl={postUrl}

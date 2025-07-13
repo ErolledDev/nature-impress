@@ -43,10 +43,11 @@ ${allUrls.map(url => `  <url>
     return new Response(sitemap, {
       headers: {
         'Content-Type': 'application/xml; charset=utf-8',
-        'Cache-Control': 'public, max-age=3600, s-maxage=3600',
+        'Cache-Control': 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=7200',
       },
     });
   } catch (error) {
+    console.error('Sitemap generation error:', error);
     return new Response('Error generating sitemap', { status: 500 });
   }
 }

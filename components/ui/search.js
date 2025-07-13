@@ -14,6 +14,8 @@ export default function SearchInput({
         placeholder={placeholder}
         name="q"
         id="q"
+        autoComplete="off"
+        spellCheck="false"
         className="w-full px-3 py-2 border rounded-md outline-none focus:border-gray-300 focus:shadow-sm dark:bg-gray-900 dark:border-gray-600 dark:focus:border-white text-sm sm:text-base min-h-[40px]"
       />
       <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
