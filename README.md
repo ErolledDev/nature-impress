@@ -1,4 +1,4 @@
-# Nature's Whispers - Premium Nature Blog Template
+# Nature's Whispers - Premium Nature Blog Template.
 
 A modern, fast, and SEO-optimized blog template built with Next.js 14, designed specifically for nature enthusiasts, wildlife photographers, and environmental bloggers. Features static site generation, beautiful responsive design, and comprehensive content management capabilities.
 
