@@ -1,13 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import Container from "@/components/container";
 import { notFound } from "next/navigation";
 import { parseISO, format } from "date-fns";
 
 import CategoryLabel from "@/components/blog/category";
 import AuthorCard from "@/components/blog/authorCard";
-import ValineComments from "@/components/ValineComments";
 import SubscriptionFormComponent from "@/components/SubscriptionFormComponent";
+
+const ValineComments = dynamic(() => import("@/components/ValineComments"), {
+  ssr: false
+});
 
 export default function Post(props) {
   const { loading, post, settings } = props;
