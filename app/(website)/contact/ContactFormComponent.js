@@ -18,7 +18,7 @@ export default function ContactFormComponent({ settings, apiKey }) {
 
   // Initialize Web3Forms hook with explicit configuration
   const { submit: onSubmit } = useWeb3Forms({
-    access_key: apiKey,
+    access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY,
     settings: {
       from_name: "Nature's Whispers",
       subject: "New Contact Message from Nature's Whispers Website",
@@ -43,7 +43,7 @@ export default function ContactFormComponent({ settings, apiKey }) {
       // Add additional form data
       const formData = {
         ...data,
-        access_key: apiKey,
+        access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY,
         from_name: "Nature's Whispers",
         subject: "New Contact Message from Nature's Whispers Website"
       };
