@@ -65,34 +65,36 @@ export default function PostList({
               categories={post.categories}
               nomargin={minimal}
             />
-            <h2
-              className={cx(
-                fontSize === "large"
-                  ? "text-xl sm:text-2xl"
-                  : minimal
-                  ? "text-2xl sm:text-3xl"
-                  : "text-lg sm:text-xl",
-                fontWeight === "normal"
-                  ? "line-clamp-2 font-medium  tracking-normal text-black"
-                  : "font-semibold leading-snug tracking-tight",
-                "mt-2 sm:mt-3 dark:text-white"
-              )}>
-              <Link
-                href={`/post/${pathPrefix ? `${pathPrefix}/` : ""}${
-                  post.slug?.current || post.slug
-                }`}>
-                <span
-                  className="bg-gradient-to-r from-brand-secondary/30 to-brand-accent/20 bg-[length:0px_10px] bg-left-bottom
+            <div className="min-h-[5.7rem]">
+              <h2
+                className={cx(
+                  fontSize === "large"
+                    ? "text-xl sm:text-2xl"
+                    : minimal
+                    ? "text-2xl sm:text-3xl"
+                    : "text-lg sm:text-xl",
+                  fontWeight === "normal"
+                    ? "line-clamp-2 font-medium  tracking-normal text-black"
+                    : "font-semibold leading-snug tracking-tight line-clamp-3",
+                  "mt-2 sm:mt-3 dark:text-white"
+                )}>
+                <Link
+                  href={`/post/${pathPrefix ? `${pathPrefix}/` : ""}${
+                    post.slug?.current || post.slug
+                  }`}>
+                  <span
+                    className="bg-gradient-to-r from-brand-secondary/30 to-brand-accent/20 bg-[length:0px_10px] bg-left-bottom
       bg-no-repeat
       transition-[background-size]
       duration-300
       hover:bg-[length:100%_3px]
       group-hover:bg-[length:100%_10px]
       dark:from-brand-primary/40 dark:to-brand-accent/30">
-                  {post.title}
-                </span>
-              </Link>
-            </h2>
+                    {post.title}
+                  </span>
+                </Link>
+              </h2>
+            </div>
 
             <div className="hidden">
               {post.excerpt && (
