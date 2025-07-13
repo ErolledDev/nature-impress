@@ -14,35 +14,24 @@ export default function About({ authors, settings }) {
         </p>
       </div>
 
-      <div className="mb-8 sm:mb-12 lg:mb-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 px-4">
-        {authors.slice(0, 3).map((author, index) => {
-          return (
-            <div
-              key={author._id}
-              className={cx(
-                "relative aspect-square overflow-hidden rounded-xl bg-gradient-to-br from-brand-primary/10 to-brand-secondary/5 dark:from-brand-primary/20 dark:to-brand-secondary/10 hover:shadow-lg transition-all duration-300 min-h-[200px]",
-                index % 2 === 1 && "sm:translate-y-8 lg:translate-y-12"
-              )}>
-              <Link href={`/author/${author?.slug?.current}`}>
-                <div className="flex h-full items-center justify-center p-6">
-                  <div className="text-center">
-                    <div className="mx-auto mb-4 h-14 w-14 sm:h-16 sm:w-16 lg:h-20 lg:w-20 rounded-full bg-brand-primary hover:bg-brand-secondary flex items-center justify-center transition-colors duration-200">
-                      <span className="text-white text-lg sm:text-xl lg:text-2xl font-bold">
-                        {author?.name?.charAt(0) || 'N'}
-                      </span>
-                    </div>
-                    <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">
-                      {author?.name}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-                      Nature Explorer
-                    </p>
-                  </div>
-                </div>
-              </Link>
-            </div>
-          );
-        })}
+      <div className="mb-8 sm:mb-12 lg:mb-16 px-4">
+        <div className="relative aspect-video sm:aspect-[21/9] lg:aspect-[3/1] overflow-hidden rounded-2xl shadow-2xl">
+          <img
+            src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80"
+            alt="Beautiful forest landscape with misty mountains and tall trees - Nature's Whispers team exploring the wilderness"
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+          <div className="absolute bottom-6 left-6 right-6 text-white">
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2">
+              Our Team in the Wild
+            </h3>
+            <p className="text-sm sm:text-base lg:text-lg opacity-90">
+              Passionate explorers documenting nature's incredible stories
+            </p>
+          </div>
+        </div>
       </div>
 
       <div className="prose prose-lg sm:prose-xl mx-auto text-center dark:prose-invert max-w-4xl px-4">
@@ -60,7 +49,7 @@ export default function About({ authors, settings }) {
           <div className="pt-2 sm:pt-4 lg:pt-6">
             <Link 
               href="/contact"
-              className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-2.5 lg:py-3 bg-brand-primary hover:bg-brand-secondary text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg text-sm sm:text-base">
+              className="inline-flex no-underline items-center px-4 sm:px-6 py-2 sm:py-2.5 lg:py-3 bg-brand-primary hover:bg-brand-secondary text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg text-sm sm:text-base">
               Connect with Nature
             </Link>
           </div>

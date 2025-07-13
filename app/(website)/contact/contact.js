@@ -30,8 +30,31 @@ const ContactForm = dynamic(() => import('./ContactFormComponent'), {
 });
 
 export default function Contact({ settings }) {
-  // Please update the Access Key in the environment variables
-  const apiKey = settings?.w3ckey || "YOUR_ACCESS_KEY_HERE";
+  // Get the access key from environment variables
+  const apiKey = settings?.w3ckey;
+
+  // Show error message if no valid access key is configured
+  if (!apiKey || apiKey === "YOUR_ACCESS_KEY_HERE") {
+    return (
+      <Container>
+        <div className="text-center mb-6 sm:mb-8 lg:mb-12 px-4">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight text-brand-primary dark:text-white leading-tight mb-4 sm:mb-6">
+            Connect with Nature
+          </h1>
+          <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-6 max-w-2xl mx-auto">
+            <h2 className="text-lg font-semibold text-red-800 dark:text-red-200 mb-2">
+              Contact Form Configuration Required
+            </h2>
+            <p className="text-red-700 dark:text-red-300 text-sm">
+              Please configure your Web3Forms access key in the environment variables to enable the contact form.
+              <br />
+              <span className="font-mono text-xs">WEB3FORMS_ACCESS_KEY=your_actual_key_here</span>
+            </p>
+          </div>
+        </div>
+      </Container>
+    );
+  }
 
   return (
     <Container>
