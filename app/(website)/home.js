@@ -39,17 +39,17 @@ export default function Post({ posts }) {
       {displayedPosts && displayedPosts.length > 0 && (
         <Container>
           {/* Hero Section */}
-          <div className="text-center mb-10 sm:mb-14 lg:mb-16">
+          <div className="text-center mb-8 sm:mb-12 lg:mb-16 px-4">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-brand-primary dark:text-brand-accent mb-4 sm:mb-6 leading-tight">
               Nature&apos;s Whispers
             </h1>
-            <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto leading-relaxed px-4">
+            <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto leading-relaxed">
               Discover the beauty and wonder of the natural world through captivating stories, stunning photography, and deep insights into wildlife and ecology.
             </p>
           </div>
 
           {/* Featured Posts */}
-          <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:gap-10 xl:gap-12 mb-10 sm:mb-14 lg:mb-16">
+          <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:gap-10 xl:gap-12 mb-8 sm:mb-12 lg:mb-16">
             {displayedPosts.slice(0, 2).map(post => (
               <PostList
                 key={post._id}
@@ -62,7 +62,7 @@ export default function Post({ posts }) {
           </div>
 
           {/* Recent Posts Grid */}
-          <div className="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:gap-10">
+          <div className="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:gap-12">
             {displayedPosts.slice(2).map((post, index) => (
               <PostList 
                 key={post._id} 
@@ -75,7 +75,7 @@ export default function Post({ posts }) {
 
           {/* Load More Button */}
           {hasMorePosts && (
-            <div className="mt-10 sm:mt-12 lg:mt-16 flex justify-center">
+            <div className="mt-8 sm:mt-12 lg:mt-16 flex justify-center">
               <button
                 onClick={handleLoadMore}
                 disabled={isLoading}
@@ -101,7 +101,7 @@ export default function Post({ posts }) {
           )}
 
           {/* Browse Categories Link */}
-          <div className="mt-6 sm:mt-8 flex justify-center">
+          <div className="mt-4 sm:mt-6 flex justify-center">
             <Link
               href="/category"
               className="text-sm sm:text-base text-gray-500 hover:text-brand-primary dark:text-gray-400 dark:hover:text-brand-accent transition-colors duration-200">

@@ -65,18 +65,18 @@ export default function PostList({
               categories={post.categories}
               nomargin={minimal}
             />
-            <div className="min-h-[5.7rem]">
+            <div className="min-h-[4.5rem] sm:min-h-[5.7rem]">
               <h2
                 className={cx(
                   fontSize === "large"
-                    ? "text-xl sm:text-2xl"
+                    ? "text-lg sm:text-xl lg:text-2xl"
                     : minimal
-                    ? "text-2xl sm:text-3xl"
-                    : "text-lg sm:text-xl",
+                    ? "text-xl sm:text-2xl lg:text-3xl"
+                    : "text-base sm:text-lg lg:text-xl",
                   fontWeight === "normal"
                     ? "line-clamp-2 font-medium  tracking-normal text-black"
                     : "font-semibold leading-snug tracking-tight line-clamp-3",
-                  "mt-2 sm:mt-3 dark:text-white"
+                  "mt-3 sm:mt-4 dark:text-white"
                 )}>
                 <Link
                   href={`/post/${pathPrefix ? `${pathPrefix}/` : ""}${
@@ -112,14 +112,14 @@ export default function PostList({
             <div className="mt-3 sm:mt-4 flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-3 text-gray-500 dark:text-gray-400">
               <Link href={`/author/${post?.author?.slug?.current}`}>
                 <div className="flex items-center gap-3">
-                  <div className="relative h-5 w-5 flex-shrink-0">
-                    <div className="h-5 w-5 rounded-full bg-brand-primary flex items-center justify-center">
+                  <div className="relative h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0">
+                    <div className="h-5 w-5 sm:h-6 sm:w-6 rounded-full bg-brand-primary flex items-center justify-center">
                       <span className="text-white text-xs font-bold">
                         {post?.author?.name?.charAt(0) || 'N'}
                       </span>
                     </div>
                   </div>
-                  <span className="truncate text-xs sm:text-sm hover:text-brand-primary dark:hover:text-brand-accent transition-colors duration-200">
+                  <span className="truncate text-xs sm:text-sm lg:text-base hover:text-brand-primary dark:hover:text-brand-accent transition-colors duration-200">
                     {post?.author?.name}
                   </span>
                 </div>
@@ -128,7 +128,7 @@ export default function PostList({
                 &bull;
               </span>
               <time
-                className="truncate text-xs sm:text-sm"
+                className="truncate text-xs sm:text-sm lg:text-base"
                 dateTime={post?.publishedAt || post._createdAt}>
                 {format(
                   parseISO(post?.publishedAt || post._createdAt),

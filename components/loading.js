@@ -1,10 +1,10 @@
 export default function Loading({ count = 6, aspect = "square", layout = "grid" }) {
   return (
-    <div className={`mt-10 grid gap-6 sm:gap-8 lg:gap-10 ${
+    <div className={`mt-8 sm:mt-10 grid gap-6 sm:gap-8 lg:gap-10 xl:gap-12 ${
       layout === "featured" 
-        ? "md:grid-cols-2 xl:gap-12" 
+        ? "md:grid-cols-2" 
         : layout === "grid" 
-        ? "sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3" 
+        ? "sm:grid-cols-2 lg:grid-cols-3" 
         : "grid-cols-1"
     }`}>
       {new Array(count).fill().map((item, index) => (
@@ -20,7 +20,7 @@ export default function Loading({ count = 6, aspect = "square", layout = "grid" 
 
 const PostCardSkeleton = ({ aspect = "square", featured = false }) => {
   return (
-    <div className="group cursor-pointer animate-pulse">
+    <div className="group animate-pulse">
       {/* Image Skeleton */}
       <div className={`overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800 ${
         aspect === "landscape" ? "aspect-video" : "aspect-square"
@@ -29,32 +29,35 @@ const PostCardSkeleton = ({ aspect = "square", featured = false }) => {
       </div>
 
       {/* Content Skeleton */}
-      <div className="mt-4 sm:mt-6">
+      <div className="mt-4 sm:mt-6 space-y-3 sm:space-y-4">
         {/* Category Skeleton */}
-        <div className="mb-2 sm:mb-3">
-          <div className="inline-block h-6 w-20 bg-gray-200 dark:bg-gray-700 rounded-md"></div>
+        <div>
+          <div className="inline-block h-5 sm:h-6 w-16 sm:w-20 bg-gray-200 dark:bg-gray-700 rounded-full"></div>
         </div>
 
         {/* Title Skeleton */}
-        <div className="space-y-2 mb-3 sm:mb-4">
+        <div className="space-y-2 sm:space-y-3">
           <div className={`h-6 bg-gray-200 dark:bg-gray-700 rounded ${
-            featured ? "sm:h-8" : ""
+            featured ? "sm:h-7 lg:h-8" : "sm:h-6"
           }`}></div>
           <div className={`h-6 bg-gray-200 dark:bg-gray-700 rounded w-3/4 ${
-            featured ? "sm:h-8" : ""
+            featured ? "sm:h-7 lg:h-8" : "sm:h-6"
           }`}></div>
+          {featured && (
+            <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-1/2 sm:h-7 lg:h-8"></div>
+          )}
         </div>
 
         {/* Author and Date Skeleton */}
-        <div className="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-3">
+        <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-3">
           <div className="flex items-center gap-3">
             {/* Author Avatar */}
-            <div className="h-5 w-5 bg-gray-200 dark:bg-gray-700 rounded-full flex-shrink-0"></div>
+            <div className="h-5 w-5 sm:h-6 sm:w-6 bg-gray-200 dark:bg-gray-700 rounded-full flex-shrink-0"></div>
             {/* Author Name */}
-            <div className="h-4 w-24 bg-gray-200 dark:bg-gray-700 rounded"></div>
+            <div className="h-4 w-20 sm:w-24 bg-gray-200 dark:bg-gray-700 rounded"></div>
           </div>
           {/* Date */}
-          <div className="h-4 w-20 bg-gray-200 dark:bg-gray-700 rounded"></div>
+          <div className="h-4 w-16 sm:w-20 bg-gray-200 dark:bg-gray-700 rounded"></div>
         </div>
       </div>
     </div>

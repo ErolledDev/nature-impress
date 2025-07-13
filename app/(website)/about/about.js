@@ -5,16 +5,16 @@ import { cx } from "@/utils/all";
 export default function About({ authors, settings }) {
   return (
     <Container>
-      <div className="text-center mb-10 sm:mb-14 lg:mb-16 px-4">
-        <h1 className="text-brand-primary mb-4 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight dark:text-white leading-tight">
+      <div className="text-center mb-8 sm:mb-12 lg:mb-16 px-4">
+        <h1 className="text-brand-primary mb-4 sm:mb-6 text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight dark:text-white leading-tight">
           About Our Journey
         </h1>
-        <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
           We are passionate explorers of the natural world, dedicated to sharing the beauty and wonder of wildlife through captivating stories and stunning photography.
         </p>
       </div>
 
-      <div className="mb-12 sm:mb-16 lg:mb-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 px-4">
+      <div className="mb-8 sm:mb-12 lg:mb-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 px-4">
         {authors.slice(0, 3).map((author, index) => {
           return (
             <div
@@ -26,15 +26,15 @@ export default function About({ authors, settings }) {
               <Link href={`/author/${author?.slug?.current}`}>
                 <div className="flex h-full items-center justify-center p-6">
                   <div className="text-center">
-                    <div className="mx-auto mb-4 h-16 w-16 sm:h-20 sm:w-20 rounded-full bg-brand-primary hover:bg-brand-secondary flex items-center justify-center transition-colors duration-200">
-                      <span className="text-white text-xl sm:text-2xl font-bold">
+                    <div className="mx-auto mb-4 h-14 w-14 sm:h-16 sm:w-16 lg:h-20 lg:w-20 rounded-full bg-brand-primary hover:bg-brand-secondary flex items-center justify-center transition-colors duration-200">
+                      <span className="text-white text-lg sm:text-xl lg:text-2xl font-bold">
                         {author?.name?.charAt(0) || 'N'}
                       </span>
                     </div>
-                    <h3 className="text-base sm:text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">
+                    <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">
                       {author?.name}
                     </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                    <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
                       Nature Explorer
                     </p>
                   </div>
@@ -46,21 +46,21 @@ export default function About({ authors, settings }) {
       </div>
 
       <div className="prose prose-lg sm:prose-xl mx-auto text-center dark:prose-invert max-w-4xl px-4">
-        <div className="space-y-5 sm:space-y-6 lg:space-y-8">
-          <p className="text-base sm:text-lg leading-relaxed text-gray-600 dark:text-gray-400">
+        <div className="space-y-4 sm:space-y-6 lg:space-y-8">
+          <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-gray-600 dark:text-gray-400">
             We believe in the power of nature to inspire, heal, and teach us about 
             the interconnectedness of all life. Through our stories and photography, 
             we aim to foster a deeper appreciation for the wild spaces that surround us.
           </p>
-          <p className="text-base sm:text-lg leading-relaxed text-gray-600 dark:text-gray-400">
+          <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-gray-600 dark:text-gray-400">
             Our mission is to document the beauty of untouched landscapes, the 
             fascinating behaviors of wildlife, and the urgent need for conservation 
             efforts to protect these precious ecosystems for future generations.
           </p>
-          <div className="pt-4 sm:pt-6">
+          <div className="pt-2 sm:pt-4 lg:pt-6">
             <Link 
               href="/contact"
-              className="inline-flex items-center px-4 sm:px-6 py-2.5 sm:py-3 bg-brand-primary hover:bg-brand-secondary text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg text-sm sm:text-base">
+              className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-2.5 lg:py-3 bg-brand-primary hover:bg-brand-secondary text-white font-semibold rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg text-sm sm:text-base">
               Connect with Nature
             </Link>
           </div>
