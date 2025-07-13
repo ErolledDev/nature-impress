@@ -21,7 +21,8 @@ export default function ContactFormComponent({ settings, apiKey }) {
     access_key: apiKey,
     settings: {
       from_name: "Nature's Whispers",
-      subject: "New Contact Message from Nature's Whispers Website"
+      subject: "New Contact Message from Nature's Whispers Website",
+      redirect: false // Explicitly disable redirect to prevent CORS issues
     },
     onSuccess: (msg, data) => {
       setIsSuccess(true);
