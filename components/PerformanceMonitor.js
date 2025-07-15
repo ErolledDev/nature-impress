@@ -4,6 +4,9 @@ import { useEffect } from 'react';
 
 export default function PerformanceMonitor() {
   useEffect(() => {
+    // Optimize for mobile performance
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    
     // Basic performance monitoring without external dependencies
     const reportWebVitals = (metric) => {
       // Log to console in development
@@ -18,6 +21,9 @@ export default function PerformanceMonitor() {
           event_label: metric.id,
           value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
           non_interaction: true,
+          custom_map: {
+            device_type: isMobile ? 'mobile' : 'desktop'
+          }
         });
       }
     };

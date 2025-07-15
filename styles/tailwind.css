@@ -11,6 +11,30 @@
   img {
     content-visibility: auto;
   }
+  
+  /* Optimize font loading */
+  @font-face {
+    font-family: 'Inter';
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Lora';
+    font-display: swap;
+  }
+  
+  /* Improve mobile performance */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Optimize animations for mobile */
+  @media (max-width: 768px) {
+    * {
+      animation-duration: 0.3s !important;
+      transition-duration: 0.2s !important;
+    }
+  }
 }
 
 /* Reduce motion for users who prefer it */

@@ -76,8 +76,6 @@ export default function Featured({ post, pathPrefix }) {
                     </span>
                   </div>
                 </div>
-              </div>
-            </div>
           </div>
         </Link>
       </div>

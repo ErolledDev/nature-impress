@@ -73,6 +73,7 @@ const PostCardImageSkeleton = ({ aspect }) => {
       className="w-full h-full bg-gray-100 dark:bg-gray-800 animate-pulse rounded-lg"
       style={{ aspectRatio: aspect === "landscape" ? "16/9" : "1/1" }}
       aria-label="Loading image..."
+      role="img"
     />
   );
   
