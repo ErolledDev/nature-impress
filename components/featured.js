@@ -34,52 +34,52 @@ export default function Featured({ post, pathPrefix }) {
       )}
 
       <div className="self-center px-6 py-8 lg:px-8 lg:py-12">
-        <Link
-          href={`/post/${pathPrefix ? `${pathPrefix}/` : ""}${
-            post.slug?.current || post.slug
-          }`}>
-          <div className="max-w-2xl">
+        <div className="max-w-2xl">
+          <Link
+            href={`/post/${pathPrefix ? `${pathPrefix}/` : ""}${
+              post.slug?.current || post.slug
+            }`}>
             <h1 className="mb-4 text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight text-white leading-tight hover:text-brand-accent transition-colors duration-300">
               {post.title}
             </h1>
+          </Link>
 
-            <div className="flex mt-6 space-x-3 text-gray-300 lg:mt-8">
-              <div className="flex flex-col gap-3 lg:items-center lg:flex-row">
-                <div className="flex items-center gap-3">
-                  <div className="relative flex-shrink-0 w-5 h-5">
-                    <div className="w-5 h-5 rounded-full bg-brand-accent flex items-center justify-center">
-                      <span className="text-white text-xs font-bold">
-                        {post?.author?.name?.charAt(0) || 'N'}
-                      </span>
-                    </div>
-                  </div>
-                  <p className="text-gray-100 hover:text-white transition-colors duration-200">
-                    {post.author.name}{" "}
-                    <span className="hidden pl-2 lg:inline"> ·</span>
-                  </p>
-                </div>
-
-                <div>
-                  <div className="flex space-x-2 text-sm lg:flex-row lg:items-center">
-                    <time
-                      className="text-white"
-                      dateTime={post?.publishedAt || post._createdAt}>
-                      {format(
-                        parseISO(
-                          post?.publishedAt || post._createdAt
-                        ),
-                        "MMMM dd, yyyy"
-                      )}
-                    </time>
-                    <span className="text-white">
-                      · {post.estReadingTime || "5"} min read
+          <div className="flex mt-6 space-x-3 text-gray-300 lg:mt-8">
+            <div className="flex flex-col gap-3 lg:items-center lg:flex-row">
+              <div className="flex items-center gap-3">
+                <div className="relative flex-shrink-0 w-5 h-5">
+                  <div className="w-5 h-5 rounded-full bg-brand-accent flex items-center justify-center">
+                    <span className="text-white text-xs font-bold">
+                      {post?.author?.name?.charAt(0) || 'N'}
                     </span>
                   </div>
                 </div>
-          </div>
+                <p className="text-gray-100 hover:text-white transition-colors duration-200">
+                  {post.author.name}{" "}
+                  <span className="hidden pl-2 lg:inline"> ·</span>
+                </p>
+              </div>
+
+              <div>
+                <div className="flex space-x-2 text-sm lg:flex-row lg:items-center">
+                  <time
+                    className="text-white"
+                    dateTime={post?.publishedAt || post._createdAt}>
+                    {format(
+                      parseISO(
+                        post?.publishedAt || post._createdAt
+                      ),
+                      "MMMM dd, yyyy"
+                    )}
+                  </time>
+                  <span className="text-white">
+                    · {post.estReadingTime || "5"} min read
+                  </span>
+                </div>
+              </div>
             </div>
-          </Link>
-        </Link>
+          </div>
+        </div>
       </div>
     </div>
   );
