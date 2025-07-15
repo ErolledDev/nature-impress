@@ -155,7 +155,6 @@ export default function Post(props) {
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 80vw"
             className="object-cover"
             priority // Sets loading="eager" internally, no need to specify both
-            quality={90}
           />
         )}
       </div>

@@ -77,6 +77,8 @@ export default function Featured({ post, pathPrefix }) {
                   </div>
                 </div>
           </div>
+            </div>
+          </Link>
         </Link>
       </div>
     </div>
