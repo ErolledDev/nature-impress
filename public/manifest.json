@@ -1,0 +1,21 @@
+{
+  "name": "Nature's Whispers - Exploring the Wild",
+  "short_name": "Nature's Whispers",
+  "description": "Discover the beauty and wonder of the natural world through captivating stories, stunning photography, and deep insights into wildlife and ecology.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#059669",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/img/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["lifestyle", "education", "photography"],
+  "lang": "en",
+  "dir": "ltr"
+}

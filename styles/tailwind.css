@@ -10,12 +10,22 @@
   
   img {
     content-visibility: auto;
+    contain-intrinsic-size: 300px 200px;
   }
   
   /* Optimize font loading */
   @font-face {
     font-family: 'Inter';
     font-display: swap;
+    font-weight: 400;
+    src: url('/fonts/Inter-Regular.otf') format('opentype');
+  }
+  
+  @font-face {
+    font-family: 'Inter';
+    font-display: swap;
+    font-weight: 700;
+    src: url('/fonts/Inter-Bold.otf') format('opentype');
   }
   
   @font-face {
@@ -31,9 +41,38 @@
   /* Optimize animations for mobile */
   @media (max-width: 768px) {
     * {
-      animation-duration: 0.3s !important;
-      transition-duration: 0.2s !important;
+      animation-duration: 0.2s !important;
+      transition-duration: 0.15s !important;
     }
+  }
+  
+  /* Improve font rendering */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeSpeed;
+  }
+  
+  /* Optimize focus indicators for accessibility */
+  :focus-visible {
+    outline: 2px solid #059669;
+    outline-offset: 2px;
+  }
+  
+  /* Improve button accessibility */
+  button, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Optimize link accessibility */
+  a {
+    text-decoration-skip-ink: auto;
+  }
+  
+  /* Improve form accessibility */
+  input, textarea, select {
+    min-height: 44px;
   }
 }
 
@@ -47,6 +86,22 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Improve loading states */
+.loaded {
+  opacity: 1;
+  transform: none;
+}
+
+/* Optimize image loading */
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+img[loading="lazy"].loaded {
+  opacity: 1;
 }
 
 /*Custom Styles Here*/

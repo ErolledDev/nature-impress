@@ -16,7 +16,7 @@ export default function PostList({
 }) {
   return (
     <>
-      <div
+      <article
         className={cx(
           "group cursor-pointer",
           minimal && "grid gap-6 md:gap-10 md:grid-cols-2"
@@ -36,11 +36,12 @@ export default function PostList({
             )}
             href={`/post/${pathPrefix ? `${pathPrefix}/` : ""}${
               post.slug?.current || post.slug
-            }`}>
+            }`}
+            aria-label={`Read more about ${post.title}`}>
             {post.mainImage?.src ? (
               <Image
                 src={post.mainImage.src}
-                alt={post.mainImage.alt || post.title}
+                alt={post.mainImage.alt || `Featured image for ${post.title}`}
                 priority={preloadImage ? true : false}
                 loading={preloadImage ? "eager" : "lazy"}
                 className="object-cover transition-all duration-300"
@@ -53,7 +54,7 @@ export default function PostList({
                 quality={preloadImage ? 90 : 75}
               />
             ) : (
-              <span className="absolute left-1/2 top-1/2 h-16 w-16 -translate-x-1/2 -translate-y-1/2 text-gray-200">
+              <span className="absolute left-1/2 top-1/2 h-16 w-16 -translate-x-1/2 -translate-y-1/2 text-gray-200" aria-hidden="true">
                 <PhotoIcon />
               </span>
             )}
@@ -75,14 +76,15 @@ export default function PostList({
                     ? "text-xl sm:text-2xl lg:text-3xl"
                     : "text-base sm:text-lg lg:text-xl",
                   fontWeight === "normal"
-                    ? "line-clamp-2 font-medium  tracking-normal text-black"
+                    ? "line-clamp-2 font-medium tracking-normal text-black"
                     : "font-semibold leading-snug tracking-tight line-clamp-3",
                   "mt-3 sm:mt-4 dark:text-white"
                 )}>
                 <Link
                   href={`/post/${pathPrefix ? `${pathPrefix}/` : ""}${
                     post.slug?.current || post.slug
-                  }`}>
+                  }`}
+                  aria-label={`Read full article: ${post.title}`}>
                   <span
                     className="bg-gradient-to-r from-brand-secondary/30 to-brand-accent/20 bg-[length:0px_10px] bg-left-bottom
       bg-no-repeat
@@ -103,7 +105,8 @@ export default function PostList({
                   <Link
                     href={`/post/${
                       pathPrefix ? `${pathPrefix}/` : ""
-                    }${post.slug?.current || post.slug}`}>
+                    }${post.slug?.current || post.slug}`}
+                    aria-label={`Read more about ${post.title}`}>
                     {post.excerpt}
                   </Link>
                 </p>
@@ -111,11 +114,13 @@ export default function PostList({
             </div>
 
             <div className="mt-3 sm:mt-4 flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-3 text-gray-500 dark:text-gray-400">
-              <Link href={`/author/${post?.author?.slug?.current}`}>
+              <Link 
+                href={`/author/${post?.author?.slug?.current}`}
+                aria-label={`View posts by ${post?.author?.name}`}>
                 <div className="flex items-center gap-3">
                   <div className="relative h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0">
                     <div className="h-5 w-5 sm:h-6 sm:w-6 rounded-full bg-brand-primary flex items-center justify-center">
-                      <span className="text-white text-xs font-bold">
+                      <span className="text-white text-xs font-bold" aria-hidden="true">
                         {post?.author?.name?.charAt(0) || 'N'}
                       </span>
                     </div>
@@ -125,7 +130,7 @@ export default function PostList({
                   </span>
                 </div>
               </Link>
-              <span className="hidden sm:inline text-xs text-gray-300 dark:text-gray-600">
+              <span className="hidden sm:inline text-xs text-gray-300 dark:text-gray-600" aria-hidden="true">
                 &bull;
               </span>
               <time
@@ -139,7 +144,7 @@ export default function PostList({
             </div>
           </div>
         </div>
-      </div>
+      </article>
     </>
   );
 }

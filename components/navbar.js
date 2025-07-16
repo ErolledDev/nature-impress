@@ -35,7 +35,7 @@ export default function Navbar(props) {
 
   return (
     <Container>
-      <nav>
+      <nav role="navigation" aria-label="Main navigation">
         <Disclosure>
           {({ open }) => (
             <>
@@ -53,7 +53,7 @@ export default function Navbar(props) {
                         <Link
                           href={item.href}
                           key={`${item.label}${index}`}
-                          className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-brand-primary dark:text-gray-400 dark:hover:text-brand-accent rounded-md transition-colors duration-200"
+                          className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-brand-primary dark:text-gray-400 dark:hover:text-brand-accent rounded-md transition-colors duration-200 min-h-[44px] flex items-center"
                           aria-label={item.label}
                           target={item.external ? "_blank" : ""}
                           rel={item.external ? "noopener" : ""}>
@@ -64,23 +64,25 @@ export default function Navbar(props) {
                   ))}
                 </div>
                 <div className="flex w-full items-center justify-between md:w-auto">
-                  <Link href="/" className="flex-shrink-0 dark:hidden">
+                  <Link href="/" className="flex-shrink-0 dark:hidden" aria-label="Nature's Whispers Home">
                     <span className="block text-center text-lg sm:text-xl lg:text-2xl font-bold text-brand-primary hover:text-brand-secondary transition-colors duration-200">
                       Nature&apos;s Whispers
                     </span>
                   </Link>
-                  <Link href="/" className="hidden flex-shrink-0 dark:block">
+                  <Link href="/" className="hidden flex-shrink-0 dark:block" aria-label="Nature's Whispers Home">
                     <span className="block text-center text-lg sm:text-xl lg:text-2xl font-bold text-brand-accent hover:text-brand-secondary transition-colors duration-200">
                       Nature&apos;s Whispers
                     </span>
                   </Link>
                   <Disclosure.Button
                     aria-label="Toggle Menu"
-                    className="ml-auto rounded-md p-2 text-gray-500 hover:text-brand-primary focus:text-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/20 dark:text-gray-300 dark:hover:text-brand-accent md:hidden transition-colors duration-200">
+                    aria-expanded={open}
+                    className="ml-auto rounded-md p-2 text-gray-500 hover:text-brand-primary focus:text-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary/20 dark:text-gray-300 dark:hover:text-brand-accent md:hidden transition-colors duration-200 min-h-[44px] min-w-[44px] flex items-center justify-center">
                     <svg
                       className="h-6 w-6 fill-current"
                       xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24">
+                      viewBox="0 0 24 24"
+                      aria-hidden="true">
                       {open && (
                         <path
                           fillRule="evenodd"
@@ -111,7 +113,7 @@ export default function Navbar(props) {
                         <Link
                           href={item.href}
                           key={`${item.label}${index}`}
-                          className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-brand-primary dark:text-gray-400 dark:hover:text-brand-accent rounded-md transition-colors duration-200"
+                          className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-brand-primary dark:text-gray-400 dark:hover:text-brand-accent rounded-md transition-colors duration-200 min-h-[44px] flex items-center"
                           aria-label={item.label}
                           target={item.external ? "_blank" : ""}
                           rel={item.external ? "noopener" : ""}>
@@ -126,7 +128,7 @@ export default function Navbar(props) {
                     </Fragment>
                   ))}
                   <div className="ml-4">
-                    <form action="/search" method="GET">
+                    <form action="/search" method="GET" role="search">
                       <SearchInput placeholder="Search" />
                     </form>
                   </div>
@@ -157,7 +159,7 @@ export default function Navbar(props) {
                     </Fragment>
                   ))}
                   <div className="px-4 py-3">
-                    <form action="/search" method="GET">
+                    <form action="/search" method="GET" role="search">
                       <SearchInput placeholder="Search stories..." />
                     </form>
                   </div>
@@ -179,15 +181,17 @@ const DropdownMenu = ({ menu, items, mobile }) => {
       {({ open }) => (
         <>
           <Menu.Button
+            aria-expanded={open}
+            aria-haspopup="true"
             className={cx(
-              "flex items-center gap-x-1 rounded-md px-5 py-2 text-sm font-medium  outline-none transition-all focus:outline-none focus-visible:text-indigo-500 focus-visible:ring-1 dark:focus-visible:bg-gray-800",
+              "flex items-center gap-x-1 rounded-md px-5 py-2 text-sm font-medium outline-none transition-all focus:outline-none focus-visible:text-indigo-500 focus-visible:ring-1 dark:focus-visible:bg-gray-800 min-h-[44px]",
               open
                 ? "text-brand-primary hover:text-brand-primary"
                 : " text-gray-600 dark:text-gray-400 ",
               mobile ? "w-full px-4 py-2 " : "inline-block px-4 py-2"
             )}>
             <span>{menu.label}</span>
-            <ChevronDownIcon className="mt-0.5 h-4 w-4" />
+            <ChevronDownIcon className="mt-0.5 h-4 w-4" aria-hidden="true" />
           </Menu.Button>
           <Transition
             as={Fragment}
@@ -199,8 +203,8 @@ const DropdownMenu = ({ menu, items, mobile }) => {
             leaveTo="lg:transform lg:opacity-0 lg:scale-95">
             <Menu.Items
               className={cx(
-                "z-20 origin-top-left rounded-md  focus:outline-none  lg:absolute lg:left-0  lg:w-56",
-                !mobile && "bg-white shadow-lg  dark:bg-gray-800"
+                "z-20 origin-top-left rounded-md focus:outline-none lg:absolute lg:left-0 lg:w-56",
+                !mobile && "bg-white shadow-lg dark:bg-gray-800"
               )}>
               <div className={cx(!mobile && "py-3")}>
                 {items.map((item, index) => (
@@ -209,7 +213,7 @@ const DropdownMenu = ({ menu, items, mobile }) => {
                       <Link
                         href={item?.path ? item.path : "#"}
                         className={cx(
-                          "flex items-center space-x-2 px-5 py-2 text-sm lg:space-x-4",
+                          "flex items-center space-x-2 px-5 py-2 text-sm lg:space-x-4 min-h-[44px]",
                           active
                             ? "text-brand-primary"
                             : "text-gray-700 hover:text-brand-primary focus:text-brand-primary dark:text-gray-300 dark:hover:text-brand-accent"

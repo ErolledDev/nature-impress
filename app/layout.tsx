@@ -6,12 +6,16 @@ import Script from "next/script";
 
 const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-inter"
+  variable: "--font-inter",
+  display: 'swap',
+  preload: true
 });
 
 const lora = Lora({
   subsets: ["latin"],
-  variable: "--font-lora"
+  variable: "--font-lora",
+  display: 'swap',
+  preload: false
 });
 
 export const metadata = {
@@ -105,12 +109,17 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Nature's Whispers" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        
+        {/* Preconnect to external domains */}
         <link rel="preconnect" href="https://images.pexels.com" />
         <link rel="dns-prefetch" href="https://images.pexels.com" />
         <link rel="preconnect" href="https://images.unsplash.com" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
         <link rel="preconnect" href="https://firebasestorage.googleapis.com" />
         <link rel="dns-prefetch" href="https://firebasestorage.googleapis.com" />
+        
+        {/* Preload critical fonts */}
         <link rel="preload" href="/fonts/Inter-Regular.otf" as="font" type="font/otf" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/Inter-Bold.otf" as="font" type="font/otf" crossOrigin="anonymous" />
       </head>
