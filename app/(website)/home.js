@@ -1,11 +1,11 @@
 "use client";
 
-"use client";
-
 import { useState } from "react";
 import Link from "next/link";
 import Container from "@/components/container";
 import PostList from "@/components/postlist";
+import LazyLoader from "@/components/LazyLoader";
+import CriticalCSS from "@/components/CriticalCSS";
 
 export default function Post({ posts }) {
   const [displayLimit, setDisplayLimit] = useState(14);
@@ -36,20 +36,21 @@ export default function Post({ posts }) {
 
   return (
     <>
+      <CriticalCSS />
       {displayedPosts && displayedPosts.length > 0 && (
         <Container>
           {/* Hero Section */}
-          <div className="text-center mb-8 sm:mb-12 lg:mb-16 px-4">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-brand-primary dark:text-brand-accent mb-4 sm:mb-6 leading-tight">
+          <div className="hero-section text-center mb-8 sm:mb-12 lg:mb-16 px-4">
+            <h1 className="hero-title text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-brand-primary dark:text-brand-accent mb-4 sm:mb-6 leading-tight">
               Nature&apos;s Whispers
             </h1>
-            <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto leading-relaxed">
+            <p className="hero-description text-base sm:text-lg lg:text-xl xl:text-2xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto leading-relaxed">
               Discover the beauty and wonder of the natural world through captivating stories, stunning photography, and deep insights into wildlife and ecology.
             </p>
           </div>
 
           {/* Featured Posts */}
-          <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:gap-10 xl:gap-12 mb-8 sm:mb-12 lg:mb-16">
+          <div className="post-grid grid gap-6 sm:gap-8 md:grid-cols-2 lg:gap-10 xl:gap-12 mb-8 sm:mb-12 lg:mb-16">
             {displayedPosts.slice(0, 2).map(post => (
               <PostList
                 key={post._id}
@@ -62,16 +63,18 @@ export default function Post({ posts }) {
           </div>
 
           {/* Recent Posts Grid */}
-          <div className="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:gap-12">
-            {displayedPosts.slice(2).map((post, index) => (
-              <PostList 
-                key={post._id} 
-                post={post} 
-                aspect="square"
-                preloadImage={index < 4}
-              />
-            ))}
-          </div>
+          <LazyLoader fallback={<div className="h-96 bg-gray-100 dark:bg-gray-800 animate-pulse rounded-lg" />}>
+            <div className="post-grid grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:gap-12">
+              {displayedPosts.slice(2).map((post, index) => (
+                <PostList 
+                  key={post._id} 
+                  post={post} 
+                  aspect="square"
+                  preloadImage={index < 4}
+                />
+              ))}
+            </div>
+          </LazyLoader>
 
           {/* Load More Button */}
           {hasMorePosts && (

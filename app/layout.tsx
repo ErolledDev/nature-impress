@@ -8,14 +8,16 @@ const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: 'swap',
-  preload: true
+  preload: true,
+  fallback: ['system-ui', 'arial']
 });
 
 const lora = Lora({
   subsets: ["latin"],
   variable: "--font-lora",
   display: 'swap',
-  preload: false
+  preload: false,
+  fallback: ['Georgia', 'serif']
 });
 
 export const metadata = {
@@ -111,17 +113,23 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="Nature's Whispers" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         
+        {/* Performance hints */}
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+        
         {/* Preconnect to external domains */}
         <link rel="preconnect" href="https://images.pexels.com" />
-        <link rel="dns-prefetch" href="https://images.pexels.com" />
         <link rel="preconnect" href="https://images.unsplash.com" />
-        <link rel="dns-prefetch" href="https://images.unsplash.com" />
         <link rel="preconnect" href="https://firebasestorage.googleapis.com" />
-        <link rel="dns-prefetch" href="https://firebasestorage.googleapis.com" />
         
         {/* Preload critical fonts */}
-        <link rel="preload" href="/fonts/Inter-Regular.otf" as="font" type="font/otf" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/Inter-Bold.otf" as="font" type="font/otf" crossOrigin="anonymous" />
+        <link 
+          rel="preload" 
+          href="/fonts/Inter-Regular.otf" 
+          as="font" 
+          type="font/otf" 
+          crossOrigin="anonymous"
+        />
       </head>
       <body className="antialiased text-gray-800 dark:bg-black dark:text-gray-400">
         <Providers>{children}</Providers>
