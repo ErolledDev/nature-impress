@@ -1,6 +1,6 @@
 export default function Loading({ count = 6, aspect = "square", layout = "grid" }) {
   return (
-    <div className={`post-grid mt-8 sm:mt-10 grid gap-6 sm:gap-8 lg:gap-10 xl:gap-12 ${
+    <div className={`mt-8 sm:mt-10 grid gap-6 sm:gap-8 lg:gap-10 xl:gap-12 ${
       layout === "featured" 
         ? "md:grid-cols-2" 
         : layout === "grid" 

@@ -35,7 +35,7 @@ export default function Navbar(props) {
 
   return (
     <Container>
-      <nav className="nav-container" role="navigation" aria-label="Main navigation">
+      <nav role="navigation" aria-label="Main navigation">
         <Disclosure>
           {({ open }) => (
             <>

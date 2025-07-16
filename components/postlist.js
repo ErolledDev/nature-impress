@@ -4,7 +4,6 @@ import { cx } from "@/utils/all";
 import { parseISO, format } from "date-fns";
 import { PhotoIcon } from "@heroicons/react/24/outline";
 import CategoryLabel from "@/components/blog/category";
-import OptimizedImage from "@/components/ImageOptimizer";
 
 export default function PostList({
   post,
@@ -19,12 +18,12 @@ export default function PostList({
     <>
       <article
         className={cx(
-          "post-card group cursor-pointer",
+          "group cursor-pointer",
           minimal && "grid gap-6 md:gap-10 md:grid-cols-2"
         )}>
         <div
           className={cx(
-            "post-image overflow-hidden rounded-lg bg-gray-100 transition-all duration-200 hover:scale-105 hover:shadow-lg dark:bg-gray-800"
+            "overflow-hidden rounded-lg bg-gray-100 transition-all duration-300 hover:scale-105 hover:shadow-lg dark:bg-gray-800"
           )}>
           <Link
             className={cx(
@@ -40,12 +39,19 @@ export default function PostList({
             }`}
             aria-label={`Read more about ${post.title}`}>
             {post.mainImage?.src ? (
-              <OptimizedImage
+              <Image
                 src={post.mainImage.src}
                 alt={post.mainImage.alt || `Featured image for ${post.title}`}
                 priority={preloadImage ? true : false}
-                className="object-cover transition-all duration-200"
+                loading={preloadImage ? "eager" : "lazy"}
+                className="object-cover transition-all duration-300"
                 fill
+                sizes={
+                  aspect === "landscape" 
+                    ? "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 50vw"
+                    : "(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 33vw"
+                }
+                quality={preloadImage ? 90 : 75}
               />
             ) : (
               <span className="absolute left-1/2 top-1/2 h-16 w-16 -translate-x-1/2 -translate-y-1/2 text-gray-200" aria-hidden="true">
